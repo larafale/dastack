@@ -1,0 +1,148 @@
+{
+    "HomePage": {
+        "appName": "Dastack",
+        "baseline": "Open Source Software",
+        "title": "NextJS starter kit",
+        "description": "Start your NextJS project with a salty tech stack, and help yourself with pre baked premium components."
+    },
+    "Navigation": {
+        "home": "Home",
+        "admin": "Admin",
+        "apps": "Apps",
+        "ui": "UI",
+        "docs": "Docs",
+        "settings": "Settings"
+    },
+    "SettingsPage": {
+        "title": "Paramètres",
+        "backToHome": "Retour à l'accueil",
+        "appSettings": {
+            "title": "Paramètres de l'application",
+            "darkMode": "Mode sombre",
+            "emailNotifications": "Notifications par e-mail",
+            "language": "Langue",
+            "servingSize": "Nombre de portions",
+            "peopleCount": "{count, plural, =1 {# personne} other {# personnes}}"
+        },
+        "saveButton": "Enregistrer les paramètres"
+    },
+    "Apps": {
+        "main": {
+            "title": "Apps",
+            "description": "All apps",
+            "backHref": "/apps",
+            "backLabel": "Back to apps",
+            "search": "Search",
+            "noResults": "No results"
+        },
+        "docs": {
+            "title": "Documents",
+            "description": "Manage your documents",
+            "actions": {
+                "remove": "Remove",
+                "download": "Download",
+                "scan": "Scan"
+            },
+            "list": {
+                "title": "Documents",
+                "loading": "Loading documents...",
+                "search": "Search",
+                "items": "{count, plural, =1 {# document} other {# documents}}",
+                "noResults": "No documents",
+                "noResultsDescription": "No items found. Try adjusting your filters or create a new item."
+            }
+        },
+        "cal": {
+            "title": "Calendar",
+            "description": "Manage your calendar",
+            "day": "Day",
+            "week": "Week",
+            "month": "Month",
+            "year": "Year",
+            "today": "Today",
+            "duration": "Duration",
+            "start": "Start",
+            "end": "End"
+        }
+    },
+    "Crud": {
+        "main": {
+            "title": "Admin",
+            "description": "Manage your data",
+            "backHref": "/admin",
+            "backLabel": "Back to admin",
+            "search": "Search",
+            "noResults": "No results"
+        },
+        "removeConfirm": {
+            "title": "Remove",
+            "description": "Are you sure you want to remove this item?"
+        },
+        "actions": {
+            "remove": "Remove",
+            "save": "Save",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
+        },
+        "docs": {
+            "title": "Documents",
+            "description": "Manage your documents"
+        },
+        "users": {
+            "title": "Users",
+            "description": "Manage your users"
+        }
+    },
+    "Ui": {
+        "main": {
+            "title": "UI",
+            "description": "UI components",
+            "backHref": "/ui",
+            "backLabel": "Back to ui"
+        },
+        "forms": {
+            "title": "Inputs",
+            "description": "Forms inputs showcase"
+        },
+        "buttons": {
+            "title": "Buttons",
+            "description": "Buttons"
+        },
+        "audio": {
+            "title": "Audio",
+            "description": "Audio components"
+        }
+    },
+    "FileBox": {
+        "upload": "Upload Files",
+        "uploading": "Uploading...",
+        "drop": "Drop file(s)",
+        "url": "Enter a URL",
+        "urlNote": "Note: Some websites prevent direct image linking. If download fails, save the image to your device first.",
+        "sizeError": "File size exceeds {maxSizeMB}MB limit",
+        "urlError": "Please enter a valid URL",
+        "camera": {
+            "open": "Open camera",
+            "add": "Add",
+            "cancel": "Cancel",
+            "end": "End",
+            "retake": "Retake",
+            "new": "New photo",
+            "capturedImages": "Captured images"
+        }
+    },
+    "Chatbox": {
+        "start": "Start a conversation",
+        "trigger": "Press Space"
+    },
+    "Shortcuts": {
+        "title": "Keyboard shortcuts",
+        "hotkeys": "Hotkeys",
+        "search": "Search",
+        "voice": "Voice",
+        "infos": "Click to record, press Enter to validate, press Escape to cancel."
+    },
+    "Search": {
+        "placeholder": "Search"
+    }
+}

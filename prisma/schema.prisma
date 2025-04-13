@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+  seed     = "prisma/seed.ts"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model User {
+  id         String   @id @default(ulid())
+  ref        String   @unique @default(dbgenerated("generate_short_id()"))
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  name       String
+  email      String?  @unique
+  phone      String?  @unique
+  roles      Role[]
+}
+
+model Doc {
+  id         String   @id @default(ulid())
+  ref        String   @unique @default(dbgenerated("generate_short_id()"))
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  title      String
+  meta       Json
+  text       String?
+  fileId     String?  @unique
+  file       File?    @relation(fields: [fileId], references: [id])
+}
+
+model File {
+  id         String   @id @default(ulid())
+  ref        String   @unique @default(dbgenerated("generate_short_id()"))
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  data       Bytes
+  meta       Json
+  doc        Doc?     @relation
+}

@@ -1,0 +1,188 @@
+[
+  {
+    "email": "louis@louis.com",
+    "phone": "0600000000",
+    "name": "Louis Grellet",
+    "roles": ["ADMIN"]
+  },
+  {
+    "email": "emma.lemoine@example.com",
+    "phone": "0765532062",
+    "name": "Emma Lemoine",
+    "roles": ["USER"]
+  },
+  {
+    "email": "lucas.robert@example.com",
+    "phone": "0729768766",
+    "name": "Lucas Robert",
+    "roles": ["USER"]
+  },
+  {
+    "email": "léo.moreau@example.com",
+    "phone": "0723548577",
+    "name": "Léo Moreau",
+    "roles": ["USER"]
+  },
+  {
+    "email": "pierre.martin@example.com",
+    "phone": "0770140938",
+    "name": "Pierre Martin",
+    "roles": ["USER"]
+  },
+  {
+    "email": "léo.lefevre@example.com",
+    "phone": "0639644335",
+    "name": "Léo Lefevre",
+    "roles": ["USER"]
+  },
+  {
+    "email": "emma.moreau@example.com",
+    "phone": "0659654172",
+    "name": "Emma Moreau",
+    "roles": ["USER"]
+  },
+  {
+    "email": "chloé.moreau@example.com",
+    "phone": "0632082083",
+    "name": "Chloé Moreau",
+    "roles": ["USER"]
+  },
+  {
+    "email": "léo.lemoine@example.com",
+    "phone": "0742503222",
+    "name": "Léo Lemoine",
+    "roles": ["USER"]
+  },
+  {
+    "email": "pierre.moreau@example.com",
+    "phone": "0645896126",
+    "name": "Pierre Moreau",
+    "roles": ["USER"]
+  },
+  {
+    "email": "marie.benoit@example.com",
+    "phone": "0771291964",
+    "name": "Marie Benoit",
+    "roles": ["USER"]
+  },
+  {
+    "email": "lucas.bernard@example.com",
+    "phone": "0673979660",
+    "name": "Lucas Bernard",
+    "roles": ["USER"]
+  },
+  {
+    "email": "claire.bernard@example.com",
+    "phone": "0749390602",
+    "name": "Claire Bernard",
+    "roles": ["USER"]
+  },
+  {
+    "email": "chloé.benoit@example.com",
+    "phone": "0750122171",
+    "name": "Chloé Benoit",
+    "roles": ["USER"]
+  },
+  {
+    "email": "pierre.rousseau@example.com",
+    "phone": "0759883046",
+    "name": "Pierre Rousseau",
+    "roles": ["USER"]
+  },
+  {
+    "email": "pierre.garcia@example.com",
+    "phone": "0653640403",
+    "name": "Pierre Garcia",
+    "roles": ["USER"]
+  },
+  {
+    "email": "sophie.lefevre@example.com",
+    "phone": "0699161657",
+    "name": "Sophie Lefevre",
+    "roles": ["USER"]
+  },
+  {
+    "email": "sophie.dupont@example.com",
+    "phone": "0678162479",
+    "name": "Sophie Dupont",
+    "roles": ["USER"]
+  },
+  {
+    "email": "chloé.rousseau@example.com",
+    "phone": "0677989799",
+    "name": "Chloé Rousseau",
+    "roles": ["USER"]
+  },
+  {
+    "email": "sophie.robert@example.com",
+    "phone": "0789728085",
+    "name": "Sophie Robert",
+    "roles": ["USER"]
+  },
+  {
+    "email": "paul.lefevre@example.com",
+    "phone": "0623314605",
+    "name": "Paul Lefevre",
+    "roles": ["USER"]
+  },
+  {
+    "email": "sophie.martin@example.com",
+    "phone": "0657065319",
+    "name": "Sophie Martin",
+    "roles": ["USER"]
+  },
+  {
+    "email": "paul.benoit@example.com",
+    "phone": "0689086271",
+    "name": "Paul Benoit",
+    "roles": ["USER"]
+  },
+  {
+    "email": "lucas.garcia@example.com",
+    "phone": "0677097887",
+    "name": "Lucas Garcia",
+    "roles": ["USER"]
+  },
+  {
+    "email": "emma.bernard@example.com",
+    "phone": "0629375538",
+    "name": "Emma Bernard",
+    "roles": ["USER"]
+  },
+  {
+    "email": "marie.garcia@example.com",
+    "phone": "0754025589",
+    "name": "Marie Garcia",
+    "roles": ["USER"]
+  },
+  {
+    "email": "pierre.robert@example.com",
+    "phone": "0757303840",
+    "name": "Pierre Robert",
+    "roles": ["USER"]
+  },
+  {
+    "email": "pierre.dupont@example.com",
+    "phone": "0754012155",
+    "name": "Pierre Dupont",
+    "roles": ["USER"]
+  },
+  {
+    "email": "pierre.lefevre@example.com",
+    "phone": "0695818707",
+    "name": "Pierre Lefevre",
+    "roles": ["USER"]
+  },
+  {
+    "email": "jean.rousseau@example.com",
+    "phone": "0793110664",
+    "name": "Jean Rousseau",
+    "roles": ["USER"]
+  },
+  {
+    "email": "pierre.benoit@example.com",
+    "phone": "0634811733",
+    "name": "Pierre Benoit",
+    "roles": ["USER"]
+  }
+]

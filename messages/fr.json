@@ -1,0 +1,148 @@
+{
+    "HomePage": {
+        "appName": "Dastack",
+        "baseline": "Open Source Software",
+        "title": "NextJS starter kit",
+        "description": "Start your NextJS project with a salty tech stack, and help yourself with pre baked premium business components."
+    },
+    "Navigation": {
+        "home": "Home",
+        "admin": "Admin",
+        "apps": "Apps",
+        "ui": "UI",
+        "docs": "Docs",
+        "settings": "Settings"
+    },
+    "SettingsPage": {
+        "title": "Paramètres",
+        "backToHome": "Retour à l'accueil",
+        "appSettings": {
+            "title": "Paramètres de l'application",
+            "darkMode": "Mode sombre",
+            "emailNotifications": "Notifications par e-mail",
+            "language": "Langue",
+            "servingSize": "Nombre de portions",
+            "peopleCount": "{count, plural, =1 {# personne} other {# personnes}}"
+        },
+        "saveButton": "Enregistrer les paramètres"
+    },
+    "Apps": {
+        "main": {
+            "title": "Applications",
+            "description": "Toutes les applications",
+            "backHref": "/apps",
+            "backLabel": "Retour aux apps",
+            "search": "Rechercher",
+            "noResults": "Aucun résultat"
+        },
+        "docs": {
+            "title": "Documents",
+            "description": "Gérez vos documents",
+            "actions": {
+                "remove": "Supprimer",
+                "download": "Télécharger",
+                "scan": "Scanner"
+            },
+            "list": {
+                "title": "Documents",
+                "loading": "Chargement des documents...",
+                "search": "Rechercher",
+                "items": "{count, plural, =1 {# document} other {# documents}}",
+                "noResults": "Aucun document",
+                "noResultsDescription": "Ajuster vos filtres ou créez un nouveau document."
+            }
+        },
+        "cal": {
+            "title": "Calendrier",
+            "description": "Gérez votre calendrier",
+            "day": "Jour",
+            "week": "Semaine",
+            "month": "Mois",
+            "year": "Année",
+            "today": "Aujourd'hui",
+            "duration": "Durée",
+            "start": "Début",
+            "end": "Fin"
+        }
+    },
+    "Crud": {
+        "main": {
+            "title": "Admin",
+            "description": "Gérez vos données",
+            "backHref": "/admin",
+            "backLabel": "Retour à l'admin",
+            "search": "Rechercher",
+            "noResults": "Aucun résultat"
+        },
+        "removeConfirm": {
+            "title": "Supprimer",
+            "description": "Êtes-vous sûr de vouloir supprimer cet élément ?"
+        },
+        "actions": {
+            "remove": "Supprimer",
+            "save": "Enregistrer",
+            "cancel": "Annuler",
+            "confirm": "Confirmer"
+        },
+        "docs": {
+            "title": "Documents",
+            "description": "Gérez vos documents"
+        },
+        "users": {
+            "title": "Utilisateurs",
+            "description": "Gérez vos utilisateurs"
+        }
+    },
+    "Ui": {
+        "main": {
+            "title": "UI",
+            "description": "Composants UI",
+            "backHref": "/ui",
+            "backLabel": "Retour"
+        },
+        "forms": {
+            "title": "Inputs",
+            "description": "Champs de formulaire"
+        },
+        "buttons": {
+            "title": "Boutons",
+            "description": "Boutons"
+        },
+        "audio": {
+            "title": "Audio",
+            "description": "Composants audio"
+        }
+    },
+    "FileBox": {
+        "upload": "Télécharger des fichiers",
+        "uploading": "Téléchargement...",
+        "drop": "Déposer des fichiers",
+        "url": "Entrer une URL",
+        "urlNote": "Note: Certains sites web bloquent le téléchargement. Dans ce cas, enregistrez l'image sur votre appareil.",
+        "sizeError": "Le fichier dépasse les {maxSizeMB}MB",
+        "urlError": "Veuillez entrer une URL valide",
+        "camera": {
+            "open": "Ouvrir la caméra",
+            "add": "Ajouter",
+            "cancel": "Annuler",
+            "end": "Terminer",
+            "retake": "Reprendre",
+            "new": "Nouvelle photo",
+            "capturedImages": "Images capturées"
+        }
+    },
+    "Chatbox": {
+        "start": "Démarrer une conversation",
+        "trigger": "Touche Espace"
+    },
+    "Shortcuts": {
+        "title": "Raccourcis clavier",
+        "hotkeys": "Raccourcis",
+        "search": "Recherche",
+        "voice": "Voix",
+        "infos": "Cliquez pour enregistrer, touche Entrée pour valider, touche Echap pour annuler."
+    },
+    "Search": {
+        "placeholder": "Rechercher"
+    }
+}
