@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { getLocale } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { ReactQueryProvider } from '@/lib/providers';
+import { Analytics } from "@vercel/analytics/react"
 
 
 export const generateMetadata = (): Metadata => ({
@@ -65,10 +66,11 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
             <ReactQueryProvider>
               <NextIntlClientProvider>
                 {children}
+                <Toaster />
+                <Analytics />
               </NextIntlClientProvider>
             </ReactQueryProvider>
           </NuqsAdapter>
-          <Toaster />
         </ThemeProvider>
       </body>
     </html>
