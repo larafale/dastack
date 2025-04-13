@@ -14,7 +14,7 @@ export default function GetStartedPage() {
                     <h2 className="text-2xl font-semibold">Installation</h2>
                     <div className="space-y-4">
                         <p>Clone the repository to your local machine:</p>
-                        <CodeLine content="git clone https://github.com/yourusername/dastack.git" />
+                        <CodeLine content="git clone https://github.com/larafale/dastack.git" />
 
                         <p>Navigate to the project directory:</p>
                         <CodeLine content="cd dastack" />
