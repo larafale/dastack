@@ -31,7 +31,6 @@ export default function GetStartedPage() {
                         <p>Create a <code>.env</code> file in the root directory based on the example below:</p>
                         <div className="bg-muted p-4 rounded-md overflow-x-auto font-mono text-sm">
                             <div>DATABASE_URL=&apos;postgresql://user:password@host:port/database_name&apos;</div>
-                            <div>APP_URL=&apos;http://localhost:3000&apos;</div>
                             <div>OPENAI_API_KEY=&apos;sk-proj-...&apos; # Optional</div>
                         </div>
 

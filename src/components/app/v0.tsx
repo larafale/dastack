@@ -116,7 +116,7 @@ export default function HeroSection() {
                         {t('baseline')}
                     </Badge>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500">Dastack</span>
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500">{t('title')}</span>
                     </h1>
                     <p className="text-xl md:text-2xl text-muted-foreground max-w-[800px]">
                         {t('description')}
@@ -142,7 +142,7 @@ export default function HeroSection() {
             <div className="section mt-24">
                 <div className="text-center mb-10">
                     <h2 className="text-3xl font-bold">✨ Stack Ingredients</h2>
-                    <p className="text-muted-foreground mt-2">Everything you need to build powerful applications</p>
+                    <p className="text-muted-foreground mt-2">Battle tested software to power your project</p>
                 </div>
                 <div className="@container isolate grid sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-2 max-w-screen-lg m-auto">
                     {STACK.map((item, i) => (
@@ -161,8 +161,8 @@ export default function HeroSection() {
             {/* Bakery Section */}
             <div className="section mt-24">
                 <div className="text-center mb-10">
-                    <h2 className="text-3xl font-bold">✨ Components Bakery</h2>
-                    <p className="text-muted-foreground mt-2">Everything you need to build powerful applications</p>
+                    <h2 className="text-3xl font-bold">🍪 Components Bakery</h2>
+                    <p className="text-muted-foreground mt-2">Buildings blocks to cook your application</p>
                 </div>
 
                 <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-5">

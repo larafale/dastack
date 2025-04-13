@@ -1,9 +1,9 @@
 # Dastack
 
 <div align="center">
-  <img src="public/logo.png" alt="Dastack Logo" width="180" height="auto">
-  <h3>Ready-to-fly Next.js Starter Kit</h3>
-  <p>Accelerate your web application development with a modern, feature-rich tech stack.</p>
+  <img width="134" height="auto" alt="Image" src="https://github.com/user-attachments/assets/a24707af-6525-49b5-9814-a9291489cb63" />
+  <h3>UX Starter Kit</h3>
+  <p>Ready to vibe NextJS application with premium components. Redefining user experience for the A.I era.</p>
   
   <p>
     <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js" alt="Next.js 15"></a>
@@ -15,9 +15,11 @@
   </p>
 </div>
 
-## ✨ Features
 
-Dastack comes packed with modern web development essentials:
+
+## ✨ Stack Ingredients
+
+Battle tested software to power your project:
 
 - 🚀 **Next.js 15** with App Router for advanced routing capabilities
 - ⚛️ **React 19** with latest APIs and performance improvements
@@ -31,17 +33,18 @@ Dastack comes packed with modern web development essentials:
 - 🌑 **Dark mode** support with next-themes
 - ⚙️ **T3-env** for type-safe environment variables
 - 🌐 **i18n with next-intl** for internationalization
-- 💯 **Perfect Lighthouse score** for optimal performance
 
-## 🌟 Premium Components
+## 🍪 Components Bakery
 
-Dastack includes ready-to-use business components to jumpstart your project:
+Buildings blocks to cook your application:
 
 - **Admin CRUD Pages** - Complete admin interface with create, read, update, delete functionality
 - **Keyboard Navigation** - Full keyboard support with custom shortcuts
-- **Audio Stream Widget** - Voice-first functionality with audio streaming
+- **Audio Widgets** - Voice-first functionality with audio streaming
 - **File Management** - Comprehensive file upload and management system
 - **Calendar Component** - Interactive calendar for scheduling and events
+- **Dynamic Forms** - Dynamic forms with validation and submission handling
+- ...
 
 ## 🚀 Getting Started
 
@@ -54,7 +57,7 @@ Dastack includes ready-to-use business components to jumpstart your project:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/dastack.git
+git clone https://github.com/larafale/dastack.git
 cd dastack
 ```
 
@@ -66,12 +69,8 @@ pnpm install
 3. Set up environment variables:
 Create a `.env` file in the root directory with the following variables:
 ```
-DATABASE_URL='your-database-url'
-APP_URL='http://localhost:3000'
-GOOGLE_SITE_VERIFICATION_ID='your-google-verification-id'
-REACT_SCAN=
-OPENAI_API_KEY='your-openai-api-key' # Optional, only if using AI features
-ANTHROPIC_API_KEY='your-anthropic-api-key' # Optional, only if using AI features
+DATABASE_URL='postgresql://user:password@host:port/database_name'
+OPENAI_API_KEY='sk-proj-...'  # optional
 ```
 
 4. Set up the database:
@@ -104,17 +103,8 @@ pnpm start
 
 ## 📚 Documentation
 
-Visit our [documentation](https://your-domain.com/docs) for detailed guides, API references, and examples.
+Visit our [documentation](https:/dastack.dev/docs) for detailed guides and examples.
 
-## 🧪 Query Optimization
-
-Dastack implements TanStack React Query for optimized data fetching and caching, providing:
-
-- Automatic caching to minimize API calls
-- Background refetching for fresh data
-- Optimistic updates for responsive UI
-- Stale-while-revalidate pattern
-- Request deduplication to prevent duplicate calls
 
 ## 📝 License
 
@@ -136,5 +126,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-  <p>Built with ❤️ by the Dastack Team</p>
+  <p>Built with ❤️ by studio1337.tech</p>
 </div>

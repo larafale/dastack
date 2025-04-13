@@ -2,6 +2,9 @@ import { NavDesktop } from '@/components/app/nav/nav-desktop';
 import { NavMobile } from '@/components/app/nav/nav-mobile';
 // import UserButton from '@/components/user-button';
 import { GlobalPicker } from '@/components/pickers';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Github } from 'lucide-react';
 
 export function Header() {
   return (
@@ -13,11 +16,14 @@ export function Header() {
         <NavDesktop />
         <NavMobile />
         <div className="flex flex-1 items-center justify-between gap-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-            {/* <CommandMenu /> */}
-          </div>
+
           <nav className="flex items-center">
             {/* <UserButton /> */}
+            <Link href={'https://github.com/larafale/dastack'} target="_blank" rel="noreferrer">
+              <Button variant="ghost" size="lg">
+                <Github />
+              </Button>
+            </Link>
             <GlobalPicker />
           </nav>
         </div>
