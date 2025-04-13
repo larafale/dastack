@@ -14,7 +14,6 @@ import { Card } from "../ui/card"
 import { demoSchema } from "@/app/ui/forms/schemas"
 import DynamicForm from "@/components/form/dynamic-form"
 import Link from "next/link";
-import OGImage from "@/app/opengraph-image";
 
 const FEATURES = [
     {
@@ -109,8 +108,6 @@ export default function HeroSection() {
 
     return (
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-muted/50">
-            <OGImage />
-
             <div className=" px-4 md:px-6">
                 <div className="flex flex-col items-center text-center space-y-4 mb-12">
                     <Badge className="px-3 py-1 text-sm" variant="outline">

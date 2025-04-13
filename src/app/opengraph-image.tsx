@@ -1,5 +1,8 @@
 import { ImageResponse } from 'next/og'
 
+// Route segment config
+export const runtime = 'edge'
+
 // Image metadata
 export const alt = 'Dastack - UX Starter Kit'
 export const size = {
@@ -23,7 +26,7 @@ export default async function Image() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     position: 'relative',
-                    fontFamily: 'Inter, sans-serif',
+                    fontFamily: 'sans-serif',
                     padding: '32px',
                 }}
             >
