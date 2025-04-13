@@ -1,8 +1,8 @@
 
 export const appConfig = {
-  name: "DaStack",
-  title: "DaStack - NextJS starter kit",
-  description: "Start your NextJS project with a salty tech stack, and help yourself with pre baked premium components.",
+  name: "Dastack",
+  title: "Dastack",
+  description: "Ready to vibe NextJS application with premium components. Redefining user experience for the A.I era.",
   url: 'https://dastack.dev',
   keywords: []
 };
