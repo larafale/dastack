@@ -1,9 +1,9 @@
 {
-  "name": "datstack",
+  "name": "dastack",
   "version": "0.1.1",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "db:reset": "pnpm dlx prisma migrate reset",
