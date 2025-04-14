@@ -1,8 +1,8 @@
 import Link from 'next/link'
-
+import { DocContent } from './shared'
 export default function DocsPage() {
     return (
-        <div className="max-w-4xl">
+        <DocContent>
             <h1 className="text-4xl font-bold mb-6">Documentation</h1>
             <p className="text-lg mb-10 text-muted-foreground">
                 Welcome to the Dastack documentation. Here you&apos;ll find guides to help you get the most out of your Dastack project.
@@ -41,6 +41,6 @@ export default function DocsPage() {
                 <li>Ready-to-use admin interface</li>
                 <li>Internationalization support</li>
             </ul>
-        </div>
+        </DocContent>
     )
 } 

@@ -13,7 +13,6 @@ import {
   subMonths,
   subWeeks,
   subYears,
-  format,
   differenceInHours,
 } from 'date-fns';
 
@@ -649,7 +648,7 @@ const CalendarCurrentDate = ({ className, ...props }: { className?: string } & R
   return (
     // <Button variant="outline" size="lg" className={cn("capitalize cursor-default", className)} {...props}>
     <span className={cn("capitalize cursor-default border-y-2 flex items-center justify-center", className)} {...props}>
-      {formatLocale(date, format, locale, true)}
+      {formatLocale(date, format, locale)}
     </span>
   );
 };

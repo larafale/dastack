@@ -1,8 +1,10 @@
 import CodeLine from "@/components/code-line";
+import { DocContent } from "../shared";
+import CodeBlock from "@/components/code-block";
 
 export default function GetStartedPage() {
     return (
-        <div className="max-w-4xl">
+        <DocContent>
             <h1 className="text-4xl font-bold mb-6">Get Started with Dastack</h1>
             <p className="text-lg mb-10 text-muted-foreground">
                 This guide will help you set up and run your Dastack project quickly.
@@ -29,10 +31,8 @@ export default function GetStartedPage() {
                     <h2 className="text-2xl font-semibold">Environment Variables</h2>
                     <div className="space-y-4">
                         <p>Create a <code>.env</code> file in the root directory based on the example below:</p>
-                        <div className="bg-muted p-4 rounded-md overflow-x-auto font-mono text-sm">
-                            <div>DATABASE_URL=&apos;postgresql://user:password@host:port/database_name&apos;</div>
-                            <div>OPENAI_API_KEY=&apos;sk-proj-...&apos; # Optional</div>
-                        </div>
+                        <CodeBlock codeString={`DATABASE_URL='postgresql://user:password@host:port/database_name'
+OPENAI_API_KEY='sk-proj-...' # Optional`} />
 
                         <div className="bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 p-4 rounded-md">
                             <h3 className="text-base font-medium mb-2">Note:</h3>
@@ -124,6 +124,6 @@ export default function GetStartedPage() {
                     </div>
                 </section>
             </div>
-        </div>
+        </DocContent>
     )
 } 

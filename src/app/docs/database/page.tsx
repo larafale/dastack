@@ -1,8 +1,10 @@
+import CodeBlock from "@/components/code-block";
 import CodeLine from "@/components/code-line";
+import { DocContent } from "../shared";
 
 export default function DatabasePage() {
     return (
-        <div className="max-w-4xl">
+        <DocContent>
             <h1 className="text-4xl font-bold mb-6">Database with Prisma</h1>
             <p className="text-lg mb-10 text-muted-foreground">
                 Dastack uses Prisma ORM to interact with the database. This guide will help you understand how to work with and extend your database schema.
@@ -58,8 +60,7 @@ export default function DatabasePage() {
                         <p>
                             Add or modify models in the schema file. For example, to add a new Task model:
                         </p>
-                        <div className="bg-muted p-4 rounded-md overflow-x-auto font-mono text-sm my-4">
-                            <pre>{`model Task {
+                        <CodeBlock language="prisma" codeString={`model Task {
   id         String   @id @default(ulid())
   ref        String   @unique @default(dbgenerated("generate_short_id()"))
   created_at DateTime @default(now())
@@ -70,15 +71,13 @@ export default function DatabasePage() {
   due_date   DateTime?
   userId     String?
   user       User?    @relation(fields: [userId], references: [id])
-}`}</pre>
-                        </div>
+}`} />
 
                         <h3 className="text-xl font-medium mt-6 mb-2">2. Update the User Model for Relations</h3>
                         <p>
                             If you&apos;re creating relations to existing models, update them as well:
                         </p>
-                        <div className="bg-muted p-4 rounded-md overflow-x-auto font-mono text-sm my-4">
-                            <pre>{`model User {
+                        <CodeBlock language="prisma" codeString={`model User {
   id         String   @id @default(ulid())
   ref        String   @unique @default(dbgenerated("generate_short_id()"))
   created_at DateTime @default(now())
@@ -88,8 +87,7 @@ export default function DatabasePage() {
   phone      String?  @unique
   roles      Role[]   @default([USER])
   tasks      Task[]   // New relation field
-}`}</pre>
-                        </div>
+}`} />
 
                         <h3 className="text-xl font-medium mt-6 mb-2">3. Generate a Migration</h3>
                         <p>
@@ -121,18 +119,15 @@ export default function DatabasePage() {
                         <p>
                             Dastack provides a configured Prisma client instance that you can import in your server components or API routes:
                         </p>
-                        <div className="bg-muted p-4 rounded-md overflow-x-auto font-mono text-sm my-4">
-                            <pre>{`import { db } from "@/lib/db"
+                        <CodeBlock language="javascript" codeString={`import { db } from "@/lib/db"
 
 // Example of fetching all users
-const users = await db.user.findMany()`}</pre>
-                        </div>
+const users = await db.user.findMany()`} />
 
                         <p>
                             You can use all Prisma Client features like filtering, sorting, pagination, and relations:
                         </p>
-                        <div className="bg-muted p-4 rounded-md overflow-x-auto font-mono text-sm my-4">
-                            <pre>{`// Find users with the ADMIN role and include their tasks
+                        <CodeBlock language="javascript" codeString={`// Find users with the ADMIN role and include their tasks
 const admins = await db.user.findMany({
   where: {
     roles: {
@@ -142,8 +137,7 @@ const admins = await db.user.findMany({
   include: {
     tasks: true
   }
-})`}</pre>
-                        </div>
+})`} />
                     </div>
                 </section>
 
@@ -168,6 +162,6 @@ const admins = await db.user.findMany({
                     </div>
                 </section>
             </div>
-        </div>
+        </DocContent>
     )
 } 

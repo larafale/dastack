@@ -18,28 +18,26 @@ import Logo from "@/components/logo"
 
 export function NavDesktop() {
   return (
-    <div className="mr-4 hidden md:flex">
-      <NavigationMenu >
-        <NavigationMenuList>
-          <NavigationMenuItem value="logo">
-            <NavigationMenuTrigger>
-              <Logo />
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid gap-3 p-4 md:w-[260px]  ">
-                {mainItems.map((item, i) => (
-                  <NavLink
-                    key={i}
-                    href={item.href}
-                    item={item}
-                  />
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-    </div>
+    <NavigationMenu >
+      <NavigationMenuList>
+        <NavigationMenuItem value="logo">
+          <NavigationMenuTrigger>
+            <Logo />
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid gap-3 p-4 md:w-[260px]  ">
+              {mainItems.map((item, i) => (
+                <NavLink
+                  key={i}
+                  href={item.href}
+                  item={item}
+                />
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
   )
 }
 

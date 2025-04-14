@@ -3,6 +3,7 @@ import {
   House,
   LayoutGrid,
   Palette,
+  BookOpenText,
 } from 'lucide-react';
 
 export interface MenuItem {
@@ -31,6 +32,11 @@ export const mainItems: MenuItem[] = [
     label: 'UI',
     href: '/ui',
     icon: Palette,
+  },
+  {
+    label: 'Docs',
+    href: '/docs',
+    icon: BookOpenText,
   },
 
 ];

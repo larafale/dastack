@@ -13,10 +13,13 @@ export function Header() {
         className=" flex h-14 items-center max-w-[1618px] mx-auto"
         style={{ paddingLeft: '0px' }}
       >
-        <NavDesktop />
-        <NavMobile />
-        <div className="flex flex-1 items-center justify-between gap-2 md:justify-end">
-
+        <div className="hidden md:flex">
+          <NavDesktop />
+        </div>
+        <div className='md:hidden'>
+          <NavMobile />
+        </div>
+        <div className="flex flex-1 items-center justify-end gap-2">
           <nav className="flex items-center">
             {/* <UserButton /> */}
             <Link href={'https://github.com/larafale/dastack'} target="_blank" rel="noreferrer">

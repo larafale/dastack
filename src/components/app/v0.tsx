@@ -48,7 +48,7 @@ const FEATURES = [
         description: "Fully customizable admin pages with complete CRUD functionality",
         icon: Monitor,
         component: () => <Card><Image
-            src="/img/home/crud3.png"
+            src="/img/home/crud.png"
             width={400}
             height={300}
             alt=""
@@ -60,7 +60,7 @@ const FEATURES = [
         description: "UX ready calendar component for scheduling and events",
         icon: Calendar,
         component: () => <Card><Image
-            src="/img/home/cal2.png"
+            src="/img/home/cal.png"
             width={400}
             height={300}
             alt=""

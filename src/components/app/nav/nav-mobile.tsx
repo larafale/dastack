@@ -13,7 +13,7 @@ export function NavMobile() {
   const [open, setOpen] = React.useState(false);
 
 
-  return (<div className='md:hidden ps-1'>
+  return (<>
     <div onClick={() => setOpen(true)} >
       <Logo className="scale-[0.8]" />
     </div>
@@ -42,7 +42,7 @@ export function NavMobile() {
         ))}
       </div>
     </Modal>
-  </div>)
+  </>)
 }
 
 
