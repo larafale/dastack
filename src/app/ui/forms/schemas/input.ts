@@ -4,12 +4,12 @@ import { Field } from '@/components/form/types';
 
 const schema: Field[] = [
   {
-    name: 'string',
+    name: 'input',
     type: 'input',
     placeholder,
   },
   {
-    name: 'string__disabled',
+    name: 'input__disabled',
     type: 'input',
     placeholder,
     disabled: true,

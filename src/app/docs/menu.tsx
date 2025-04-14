@@ -15,6 +15,12 @@ export function Menu() {
                 { label: "Installation", href: "/docs/get-started" }
             ]
         },
+        {
+            title: "Core Concepts",
+            items: [
+                { label: "Database", href: "/docs/database" }
+            ]
+        }
         // {
         //     title: "Features",
         //     items: [

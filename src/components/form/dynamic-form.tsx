@@ -12,7 +12,7 @@ import { DatePickerField } from './fields/date-picker';
 import { DateRangeField } from './fields/date-range';
 import { SelectField } from './fields/select';
 import { SelectMultiField } from './fields/select-multi';
-import { TextField } from './fields/text';
+import { InputField } from './fields/text';
 import { TextAreaField } from './fields/text-area';
 import { SwitchField } from './fields/switch';
 import { Field } from './types';
@@ -97,8 +97,8 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
   //
 
   const handleFormSubmit = async (data: any) => {
-    // console.log('handleFormSubmit', data);
     const values = dirtyOnly ? dirtyValues(formState.dirtyFields, data) : data;
+    console.log('handleFormSubmit', data, values);
     if (isEmpty(values) || isPending) return;
 
     setPending(true);
@@ -118,13 +118,7 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
     <div className="flex flex-col justify-between space-y-4 min-w-[225px]">
       <form
         onSubmit={form.handleSubmit(handleFormSubmit)}
-        // onSubmit={form.handleSubmit(onSubmitWrapper)}
         className={cn('space-y-4', className)}
-      // onKeyDown={(e) => {
-      //   if (e.key === 'Enter') {
-      //     console.log('Enter pressed, current values:', form.getValues());
-      //   }
-      // }}
       >
         {schema.map((field, i) => (
           <div key={i} className="flex flex-col space-y-2">
@@ -135,10 +129,10 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
               {field.label || field.name}
             </Label>
             {field.type === 'id' && (
-              <TextField field={field} control={control} />
+              <InputField field={field} control={control} />
             )}
             {['input', 'phone'].includes(field.type) && (
-              <TextField field={field} control={control} />
+              <InputField field={field} control={control} />
             )}
             {field.type === 'textarea' && (
               // <div>{JSON.stringify(field)}</div>

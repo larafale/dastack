@@ -28,7 +28,6 @@ interface CrudProps<T extends Record<string, any>> {
 }
 
 const CrudView = <T extends Record<string, any>>({
-  model,
   tableSchema,
   formCreateSchema,
   formUpdateSchema,
@@ -74,7 +73,7 @@ const CrudView = <T extends Record<string, any>>({
     if (!id) return;
 
     //@ts-ignore
-    const { err, data } = await removeAction(id);
+    const { err } = await removeAction(id);
 
     if (err) return toast.error(err.message);
     table.removeRow();

@@ -5,7 +5,7 @@ import { FieldController } from '../types';
 
 import { Input } from '@/components/ui/input';
 
-export const TextField = ({ field, control, ...props }: FieldController) => (
+export const InputField = ({ field, control, ...props }: FieldController) => (
   <Controller
     name={field.name}
     control={control}

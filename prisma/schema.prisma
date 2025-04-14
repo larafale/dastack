@@ -21,7 +21,7 @@ model User {
   name       String
   email      String?  @unique
   phone      String?  @unique
-  roles      Role[]
+  roles      Role[]   @default([USER])
 }
 
 model Doc {

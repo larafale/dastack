@@ -16,6 +16,14 @@ export default function DocsPage() {
                     <h2 className="text-2xl font-semibold mb-2 group-hover:underline">Get Started</h2>
                     <p className="text-muted-foreground">Learn how to install and set up your Dastack project.</p>
                 </Link>
+
+                <Link
+                    href="/docs/database"
+                    className="group block p-6 border rounded-lg hover:border-foreground transition-colors"
+                >
+                    <h2 className="text-2xl font-semibold mb-2 group-hover:underline">Database</h2>
+                    <p className="text-muted-foreground">Understand how to work with Prisma and extend your database schema.</p>
+                </Link>
             </div>
 
             <h2 className="text-2xl font-bold mb-4">What is Dastack?</h2>

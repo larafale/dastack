@@ -20,14 +20,14 @@ export const tableSchema: TableSchema = [
 export const formCreateSchema: FormSchema = [
   { name: 'name', type: 'input', label: 'Name', required: true },
   { name: 'email', type: 'input', label: 'Email' },
-  {
-    name: 'roles',
-    type: 'select-multi',
-    label: 'Roles',
-    options: RolesOptionList,
-    required: true,
-    defaultValue: ['USER'],
-  },
+  // {
+  //   name: 'roles',
+  //   type: 'select-multi',
+  //   label: 'Roles',
+  //   options: RolesOptionList,
+  //   required: true,
+  //   defaultValue: ['USER'],
+  // },
 ];
 
 export const formUpdateSchema: FormSchema = [

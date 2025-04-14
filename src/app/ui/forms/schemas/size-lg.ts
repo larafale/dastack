@@ -4,8 +4,8 @@ import { Field } from '@/components/form/types';
 
 const schema: Field[] = [
   {
-    name: 'string',
-    type: 'string',
+    name: 'input',
+    type: 'input',
     placeholder,
     size: 'lg',
   },

@@ -16,7 +16,7 @@ export const getFormSchema = (schema: FormSchema) => {
             .min(1, { message: required_error });
           acc[field.name] = rule;
         }
-        if (field.type === 'string') {
+        if (field.type === 'input') {
           const rule = field.required
             ? z.string({ required_error }).min(1, { message: required_error })
             : z.string().optional();
@@ -25,8 +25,8 @@ export const getFormSchema = (schema: FormSchema) => {
         if (field.type === 'phone') {
           const rule = field.required
             ? z.string({ required_error }).refine(sanitizePhone, {
-                message: phone_error,
-              })
+              message: phone_error,
+            })
             : z.string().optional();
           acc[field.name] = rule;
         }
@@ -39,20 +39,20 @@ export const getFormSchema = (schema: FormSchema) => {
 
           acc[field.name] = field.required
             ? z.enum(
-                field.options.map((option) => option.value),
+              field.options.map((option) => option.value) as [string, ...string[]],
+              {
+                required_error,
+                invalid_type_error: required_error,
+              }
+            )
+            : z
+              .enum(
+                field.options.map((option) => option.value) as [string, ...string[]],
                 {
-                  required_error,
                   invalid_type_error: required_error,
                 }
               )
-            : z
-                .enum(
-                  field.options.map((option) => option.value),
-                  {
-                    invalid_type_error: required_error,
-                  }
-                )
-                .optional();
+              .optional();
         }
         if (field.type === 'select-multi' && field.options) {
           acc[field.name] = field.required
@@ -79,8 +79,8 @@ export const getFormSchema = (schema: FormSchema) => {
 
           acc[field.name] = field.required
             ? dateRangeSchema.refine((data) => data?.from && data?.to, {
-                message: required_error,
-              })
+              message: required_error,
+            })
             : dateRangeSchema;
         }
         if (field.type === 'switch') {
@@ -102,9 +102,7 @@ export const getInitialData = (
   schema.map((field) => {
     if (field.type === 'separator') return;
 
-    if (['string', 'select'].includes(field.type))
-      data[field.name] = data[field.name] || field.defaultValue || '';
-    else if (field.type === 'date')
+    if (['select', 'input'].includes(field.type))
       data[field.name] = data[field.name] || field.defaultValue || '';
     else if (field.type === 'date-picker')
       data[field.name] = data[field.name] || field.defaultValue || undefined;
