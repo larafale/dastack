@@ -13,6 +13,12 @@
   </p>
 </div>
 
+---
+
+ <a href="https://dastack.dev">dastack.dev</a> is an open source project.
+
+---
+
 
 
 ## ✨ Stack Ingredients
