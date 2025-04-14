@@ -98,14 +98,6 @@ const STACK = [
 export default function HeroSection() {
     const t = useTranslations('HomePage')
 
-    useEffect(() => {
-        // Prevent automatic scroll restoration
-        if (typeof window !== 'undefined') {
-            window.history.scrollRestoration = 'manual';
-            window.scrollTo(0, 0);
-        }
-    }, []);
-
     return (
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-muted/50">
             <div className=" px-4 md:px-6">

@@ -62,16 +62,18 @@ export function ChatBox({
   });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const isInitialLoad = useRef(true);
 
   // Scroll to bottom when messages change
   useEffect(() => {
-    if (messagesEndRef.current) {
+    if (messagesEndRef.current && !isInitialLoad.current) {
       messagesEndRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'end',
         inline: 'nearest',
       });
     }
+    isInitialLoad.current = false;
   }, [messages]);
 
   // Reset messages when system prompt changes
@@ -107,6 +109,7 @@ export function ChatBox({
 
   const handleModalClose = () => {
     setExpanded(false);
+    onClose?.();
   };
 
   if (!open) return null;
