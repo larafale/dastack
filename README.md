@@ -1,7 +1,5 @@
-# Dastack
-
 <div align="center">
-  <img width="134" height="auto" alt="Image" src="https://github.com/user-attachments/assets/a24707af-6525-49b5-9814-a9291489cb63" />
+  <img width="134" height="auto" alt="Image" src="https://serveproxy.com/?url=https://dastack.dev/logo.png" />
   <h3>UX Starter Kit</h3>
   <p>Ready to vibe NextJS application with premium components. Redefining user experience for the A.I era.</p>
   
@@ -103,12 +101,12 @@ pnpm start
 
 ## 📚 Documentation
 
-Visit our [documentation](https:/dastack.dev/docs) for detailed guides and examples.
+Visit our [documentation](https://dastack.dev/docs) for detailed guides and examples.
 
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](LICENSE.md).
 
 ## 🙏 Acknowledgements
 
@@ -125,6 +123,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<div align="center">
-  <p>Built with ❤️ by studio1337.tech</p>
-</div>
+Built with ❤️ by [studio1337.tech](https://studio1337.tech)
