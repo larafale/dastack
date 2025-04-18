@@ -30,6 +30,7 @@ type DynamicFormProps = {
   dirtyOnly?: boolean;
   onFormReady?: (form: UseFormReturn) => void;
   debug?: boolean;
+  saveLabel?: string;
 };
 
 //@ts-ignore
@@ -42,6 +43,7 @@ const cleanData = (data) =>
       obj[key] = value;
       return obj;
     }, {});
+
 //@ts-ignore
 const dirtyValues = (dirtyFields, allValues) => {
   if (dirtyFields === true || Array.isArray(dirtyFields)) return allValues;
@@ -98,8 +100,8 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
 
   const handleFormSubmit = async (data: any) => {
     const values = dirtyOnly ? dirtyValues(formState.dirtyFields, data) : data;
-    console.log('handleFormSubmit', data, values);
-    if (isEmpty(values) || isPending) return;
+    // console.log('handleFormSubmit', data, values);
+    if (isEmpty(values) || isPending || !onSubmit) return;
 
     setPending(true);
 
@@ -135,15 +137,12 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
               <InputField field={field} control={control} />
             )}
             {field.type === 'textarea' && (
-              // <div>{JSON.stringify(field)}</div>
               <TextAreaField field={field} control={control} />
             )}
             {field.type === 'color' && (
-              // <div>{JSON.stringify(field)}</div>
               <ColorField field={field} control={control} />
             )}
             {field.type === 'date' && (
-              // <div>{JSON.stringify(field)}</div>
               <DateField field={field} control={control} />
             )}
             {field.type === 'date-picker' && (
@@ -182,7 +181,7 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
             {/* <Button variant="secondary" type="submit">
             {m.cancel()}
           </Button> */}
-            <Button disabled={!isDirty || !isValid || isPending} type="submit">
+            <Button disabled={(!isDirty && dirtyOnly) || !isValid || isPending} type="submit">
               {isPending && <Loader2 className="size-4 animate-spin" />}
               {saveLabel}
             </Button>

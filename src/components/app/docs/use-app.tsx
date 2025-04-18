@@ -1,6 +1,6 @@
 'use client';
 
-import { Doc } from '@prisma/client';
+import { Doc } from '@/generated/prisma';
 import * as React from 'react';
 import { useQueryState } from 'nuqs';
 import { getDoc } from '@/actions/docs';

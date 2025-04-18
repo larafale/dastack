@@ -17,6 +17,9 @@ const eslintConfig = [
       "@typescript-eslint/ban-ts-comment": "off",
     },
   },
+  {
+    ignores: ["src/generated"],
+  }
 ];
 
 export default eslintConfig;

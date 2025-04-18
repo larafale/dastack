@@ -1,6 +1,6 @@
 'use client';
 
-import { User } from '@prisma/client';
+import { User } from '@/generated/prisma';
 
 import { Cell, Row } from '@/components/table';
 import { RowRender } from '@/components/table/table';

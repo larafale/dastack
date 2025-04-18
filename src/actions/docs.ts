@@ -1,7 +1,7 @@
 'use server';
 
 import prisma from '@/lib/prisma';
-import { Doc } from '@prisma/client';
+import { Doc } from '@/generated/prisma';
 import { find, update, create, get, remove } from './crud';
 import { fileToText} from '@/lib/ai';
 import { type LLMString } from '@/lib/llms';

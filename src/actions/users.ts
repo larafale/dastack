@@ -1,6 +1,6 @@
 'use server';
 
-import { User } from '@prisma/client';
+import { User } from '@/generated/prisma';
 import { find, get, update } from './crud';
 
 export async function getUsers(props: any) {

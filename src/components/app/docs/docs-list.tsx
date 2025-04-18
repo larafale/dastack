@@ -1,6 +1,6 @@
 'use client';
 
-import { Doc } from '@prisma/client';
+import { Doc } from '@/generated/prisma';
 import { useState } from 'react';
 import { Pager } from '@/components/pager';
 import { getFileTypeIcon } from './utils';
@@ -8,7 +8,6 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Info, Search } from 'lucide-react';
-import { Input } from '@/components/ui/input';
 import { useDocsList } from '@/hooks/useDocs';
 import { Badge } from "@/components/ui/badge"
 import { SearchInput } from '@/components/table/search';

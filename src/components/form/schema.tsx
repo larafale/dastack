@@ -22,6 +22,12 @@ export const getFormSchema = (schema: FormSchema) => {
             : z.string().optional();
           acc[field.name] = rule;
         }
+        if (field.type === 'textarea') {
+          const rule = field.required
+            ? z.string({ required_error }).min(1, { message: required_error })
+            : z.string().optional();
+          acc[field.name] = rule;
+        }
         if (field.type === 'phone') {
           const rule = field.required
             ? z.string({ required_error }).refine(sanitizePhone, {
