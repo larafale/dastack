@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { getFile } from '@/actions/docs';
-import { Loader2, Download, Maximize2, X, Info } from 'lucide-react';
+import { Loader2, Download, Maximize2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { formatFileSize, getFileTypeIcon } from './utils';
@@ -16,7 +16,7 @@ import {
   HoverCardTrigger,
 } from '@/components/ui/hover-card';
 import { formatDistanceToNow } from 'date-fns';
-import { ObjectBlock } from './blocks/object';
+import { ObjectBlock } from '@/components/blocks/object';
 
 export const FilePreview = ({ className }: { className?: string }) => {
   const [fileData, setFileData] = useState<any>(null);
