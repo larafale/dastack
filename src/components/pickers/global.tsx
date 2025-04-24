@@ -67,7 +67,6 @@ const mapper = (data: any) => {
 const fetcher = async (search: string, namespace: string) => {
   //@ts-ignore
   const res = await fetchers[namespace]({ search, pageSize: 3 });
-  console.log('res', res);
   return res;
 };
 
