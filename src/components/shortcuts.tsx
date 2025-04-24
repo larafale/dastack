@@ -1,17 +1,17 @@
 'use client';
 
 import { Keyboard } from 'lucide-react';
-import { Button } from './ui/button';
-import Modal from './modal';
+import { Button } from '@/components/ui/button';
+import Modal from '@/components/modal';
 import { useState, useEffect, useCallback } from 'react';
-import { useShortcuts } from '../hooks/useShortcuts';
+import { useShortcuts } from '@/hooks/use-shortcuts';
 import { useRecordHotkeys, useHotkeys } from 'react-hotkeys-hook';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 
 export default function Shortcuts({ button = false, trigger = "shortcut" }) {
   const [open, setOpen] = useState(false);
-  const { shortcuts, setShortcut, getShortcut, loading } = useShortcuts();
+  const { shortcuts, setShortcut, getShortcut } = useShortcuts();
   const t = useTranslations('Shortcuts');
 
   // Track which shortcut is currently being edited

@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Modal from './modal';
 import { Camera, RefreshCw, Plus, Check, Trash2 } from 'lucide-react';
-import { Button } from './ui/button';
+import Modal from '@/components/modal';
+import { Button } from '@/components/ui/button';
 
 interface CameraCaptureProps {
   onImage?: (imageFiles: File[]) => void;

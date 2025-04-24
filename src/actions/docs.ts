@@ -3,7 +3,7 @@
 import prisma from '@/lib/prisma';
 import { Doc } from '@/generated/prisma';
 import { find, update, create, get, remove } from './crud';
-import { fileToText} from '@/lib/ai';
+import { fileToText } from '@/lib/ai';
 import { type LLMString } from '@/lib/llms';
 import { getFileCategory } from '@/components/app/docs/utils';
 import { CallShape, nope } from '@/lib/errors';
@@ -52,47 +52,47 @@ export async function uploadFiles(files: File[], llm?: LLMString) {
   try {
     const results = [];
 
-  for (const file of files) {
-    try {
-      const fileName = file.name;
-      const lastDotIndex = fileName.lastIndexOf('.');
-      const ext =
-        lastDotIndex !== -1 ? fileName.substring(lastDotIndex + 1) : '';
-      const buffer = Buffer.from(await file.arrayBuffer());
-      const meta = {
-        ext,
-        category: getFileCategory(ext),
-        originalName: fileName,
-        type: file.type,
-        size: file.size,
-      };
+    for (const file of files) {
+      try {
+        const fileName = file.name;
+        const lastDotIndex = fileName.lastIndexOf('.');
+        const ext =
+          lastDotIndex !== -1 ? fileName.substring(lastDotIndex + 1) : '';
+        const buffer = Buffer.from(await file.arrayBuffer());
+        const meta = {
+          ext,
+          category: getFileCategory(ext),
+          originalName: fileName,
+          type: file.type,
+          size: file.size,
+        };
 
-      // First create a File entry
-      const newFile = await prisma.file.create({
-        data: {
-          meta,
-          data: buffer,
-        },
-      });
+        // First create a File entry
+        const newFile = await prisma.file.create({
+          data: {
+            meta,
+            data: buffer,
+          },
+        });
 
-      // Then create the Doc with a reference to the file
-      const newDoc = await prisma.doc.create({
-        data: {
-          title: fileName,
-          meta,
-          fileId: newFile.id,
-        },
-      });
+        // Then create the Doc with a reference to the file
+        const newDoc = await prisma.doc.create({
+          data: {
+            title: fileName,
+            meta,
+            fileId: newFile.id,
+          },
+        });
 
-      if (!newDoc) {
-        throw new Error('Document creation failed');
+        if (!newDoc) {
+          throw new Error('Document creation failed');
+        }
+
+        results.push(newDoc);
+      } catch (error) {
+        console.error('Error processing file:', file.name, error);
       }
-
-      results.push(newDoc);
-    } catch (error) {
-      console.error('Error processing file:', file.name, error);
     }
-  }
 
     return results;
   } catch (err) {

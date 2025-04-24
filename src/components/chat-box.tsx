@@ -1,39 +1,49 @@
 'use client';
 
+import { useRef, useEffect, useState } from 'react';
 import { useChat } from '@ai-sdk/react';
+import { useTranslations } from 'next-intl';
 import { LetterText, Maximize2, Send, Square, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { useRef, useEffect, useState } from 'react';
 import { AudioBox } from '@/components/audio-stream';
 import Modal from '@/components/modal';
-import { AudioBoxRef } from './audio-stream/audio-box';
-import { useTranslations } from 'next-intl';
+import { AudioBoxRef } from '@/components/audio-stream/audio-box';
+import { useWindowSize } from '@/hooks/use-window-size';
 
 interface ChatBoxProps {
-  open?: boolean;
+  key?: string;
   systemPrompt?: string;
   initialMessage?: string;
   debug?: boolean;
-  onClose?: () => void;
+  maxHeight?: string;
   className?: string;
+  onClose?: () => void;
 }
 
 export function ChatBox({
+  key = 'chat-default',
   systemPrompt = 'You are a helpful assistant that provides accurate and detailed information.',
-  open = true,
-  onClose,
   initialMessage = '',
   debug = false,
+  maxHeight = 'inherit',
   className,
+  onClose,
 }: ChatBoxProps) {
-  const [expanded, setExpanded] = useState(false);
+  const [isExpanded, setExpanded] = useState(false);
   const [showText, setShowText] = useState(false);
   const audio = useRef<AudioBoxRef>(null);
   const t = useTranslations('Chatbox');
+  const chatboxRef = useRef<HTMLDivElement>(null);
+  const windowSize = useWindowSize();
+  const [chatStyle, setChatStyle] = useState({
+    height: 'inherit',
+    minHeight: '200px',
+    maxHeight: 'calc(100vh - 184px)',
+  });
 
   // Create initial messages array with system and user messages if initial message is provided
   const initialMessages = undefined;
@@ -57,24 +67,47 @@ export function ChatBox({
       systemPrompt,
     },
     // Reset chat when system prompt changes
-    id: `chat-${systemPrompt}`,
+    id: `chat-${key}`,
     initialMessages,
   });
 
+  // Refs to manage scrolling and component state
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const isInitialLoad = useRef(true);
 
-  // Scroll to bottom when messages change
-  useEffect(() => {
-    if (messagesEndRef.current && !isInitialLoad.current) {
+  // Scroll helper function
+  const scrollToBottom = () => {
+    if (messagesEndRef.current && messages.length > 0) {
       messagesEndRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'end',
         inline: 'nearest',
       });
     }
-    isInitialLoad.current = false;
+  };
+
+  // Handle scrolling on messages change
+  useEffect(() => {
+    // Don't scroll on initial load, only on updates
+    if (isInitialLoad.current) {
+      isInitialLoad.current = false;
+      return;
+    }
+
+    scrollToBottom();
   }, [messages]);
+
+  // Handle modal state changes
+  useEffect(() => {
+    // Wait for DOM to update after modal transition
+    const timer = setTimeout(() => {
+      if (messagesEndRef.current && messages.length > 0) {
+        scrollToBottom();
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [isExpanded]);
 
   // Reset messages when system prompt changes
   useEffect(() => {
@@ -104,7 +137,7 @@ export function ChatBox({
   };
 
   const toggleExpand = () => {
-    setExpanded(!expanded);
+    setExpanded(!isExpanded);
   };
 
   const handleModalClose = () => {
@@ -112,7 +145,32 @@ export function ChatBox({
     onClose?.();
   };
 
-  if (!open) return null;
+
+  useEffect(() => {
+    const ww = windowSize.width;
+    const isMobile = ww < 768;
+
+    const newStyle = {
+      height: 'inherit',
+      minHeight: '200px',
+      maxHeight: 'calc(100vh - 184px)',
+    }
+
+    setTimeout(() => {
+      if (!isExpanded && maxHeight) {
+        newStyle.height = maxHeight;
+      }
+
+      if (isExpanded) {
+        if (!showText) newStyle.maxHeight = isMobile ? 'calc(100vh - 53px)' : 'calc(100vh - 200px)';
+        else newStyle.maxHeight = isMobile ? 'calc(100vh - 182px)' : 'calc(100vh - 329px)';
+      }
+
+      setChatStyle(newStyle);
+    }, 300)
+  }, [windowSize, showText, isExpanded]);
+
+
 
   const renderDebugInfo = () => {
     if (!debug) return null;
@@ -129,7 +187,6 @@ export function ChatBox({
               <pre className="bg-black/5 dark:bg-white/5 p-2 rounded">
                 {JSON.stringify(
                   {
-                    open,
                     initialMessage,
                     systemPrompt,
                   },
@@ -177,10 +234,12 @@ export function ChatBox({
     );
   };
 
+  // Create a single instance of chat content
   const chatContent = (
     <Card
+      ref={chatboxRef}
       className={cn('flex flex-col', className, {
-        'rounded-none md:rounded-md': expanded,
+        'rounded-none md:rounded-md': isExpanded,
       })}
     >
       <div
@@ -203,29 +262,20 @@ export function ChatBox({
           >
             <LetterText />
           </Button>
-          <Button variant="ghost" size="icon" className='md:hidden' onClick={toggleExpand}>
-            {expanded ? <X /> : <Maximize2 />}
+          <Button variant="ghost" size="icon" className='' onClick={toggleExpand}>
+            {isExpanded ? <X /> : <Maximize2 />}
           </Button>
         </div>
       </div>
 
       <ScrollArea
-        className={cn('flex-1 p-3')}
+        className={cn('p-3')}
         style={{
           overflowY: 'auto',
-          height: expanded
-            ? showText
-              ? 'calc(100svh - 190px)'
-              : 'calc(100svh - 60px)'
-            : '300px',
-          maxHeight: expanded
-            ? showText
-              ? 'calc(100svh - 190px)'
-              : 'calc(100svh - 60px)'
-            : '300px',
+          ...chatStyle
         }}
       >
-        <div className="space-y-6">
+        <div className="">
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center  py-8 select-none">
               <div className='text-sm font-mono text-muted-foreground'>{t('start')}</div>
@@ -352,17 +402,19 @@ export function ChatBox({
 
   return (
     <>
-      <Modal
-        mode="dialog"
-        showCloseButton={false}
-        open={expanded}
-        onClose={handleModalClose}
-        className="max-w-screen-sm p-0 h-full sm:h-auto border-none"
-      >
-        {chatContent}
-      </Modal>
-
-      {!expanded && <div className="flex flex-col w-full h-full">{chatContent}</div>}
+      {isExpanded ? (
+        <Modal
+          mode="dialog"
+          showCloseButton={false}
+          open={isExpanded}
+          onClose={handleModalClose}
+          className="max-w-screen-sm p-0 h-full md:h-auto border-none"
+        >
+          {chatContent}
+        </Modal>
+      ) : (
+        <div className="flex flex-col w-full h-full">{chatContent}</div>
+      )}
     </>
   );
 }

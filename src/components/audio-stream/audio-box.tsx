@@ -5,7 +5,7 @@ import { ArrowRight, LetterText, Loader2, Mic } from 'lucide-react';
 import { AudioStreamWidget, useAudioStream, AudioStreamButton } from './index';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
-import { useShortcuts } from '@/hooks/useShortcuts';
+import { useShortcuts } from '@/hooks/use-shortcuts';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 // Define what properties/methods the parent can access

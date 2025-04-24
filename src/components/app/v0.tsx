@@ -26,7 +26,7 @@ const FEATURES = [
         title: "Chat Box",
         description: "Voice capable chatbox with context binding",
         icon: MessageSquareText,
-        component: ChatBox,
+        component: () => <ChatBox maxHeight="200px" />,
     },
     {
         title: "Audio Box",
@@ -41,6 +41,7 @@ const FEATURES = [
         component: () => <Card className="p-4"> <DynamicForm
             schema={demoSchema}
             initialData={{}}
+            onSubmit={() => { alert('form submitted') }}
         /></Card>,
     },
     {
@@ -137,8 +138,8 @@ export default function HeroSection() {
                 </div>
                 <div className="@container isolate grid sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-2 max-w-screen-lg m-auto">
                     {STACK.map((item, i) => (
-                        <div className="flex items-center justify-start rounded-2xl bg-background gap-2 border @md:border-muted @md:p-4 @max-sm:px-4 select-none" key={i}>
-                            <span className="text-3xl">{item.icon}</span>
+                        <div className="flex items-center justify-start rounded-md bg-background gap-2 border p-2 @md:border-muted @md:p-4 @max-sm:px-4 select-none" key={i}>
+                            <span className="text-xl md:text-3xl">{item.icon}</span>
                             <div className="">{item.text}</div>
                             {item.url && <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-muted-foreground">
                                 <ArrowRight className="size-3 text-muted-foreground" />

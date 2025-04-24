@@ -1,5 +1,8 @@
-import { ChevronFirst, ChevronLast } from 'lucide-react';
-import { Button } from './ui/button';
+import { ChevronFirst, ChevronLast, Info } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
+import { Dataset } from '@/hooks/use-dataset';
 
 interface PagerProps {
   currentPage: number | string;
@@ -9,11 +12,20 @@ interface PagerProps {
   className?: string;
 }
 
+export type PagerShape = {
+  page: number;
+  pages: number;
+  total: number;
+  sortField: string;
+  sortOrder: 'asc' | 'desc';
+}
+
 export function Pager({
   currentPage,
   totalPages,
   onPageChange,
   maxVisiblePages = 3,
+  className = "",
 }: PagerProps) {
   // Convert currentPage to number if it's a string
   const currentPageNum = typeof currentPage === 'string' ? parseInt(currentPage, 10) : currentPage;
@@ -36,7 +48,7 @@ export function Pager({
     // First page button (only when not on first page and there are more pages than maxVisiblePages)
     if (showNavigationButtons && currentPageNum >= maxVisiblePages) {
       items.push(
-        <PageButton onClick={() => handlePageChange(1)}><ChevronFirst /></PageButton>
+        <PageButton key="first" onClick={() => handlePageChange(1)}><ChevronFirst /></PageButton>
       );
     }
 
@@ -82,7 +94,7 @@ export function Pager({
     // Last page button (only when not on last page and there are more pages than maxVisiblePages)
     if (showNavigationButtons && currentPageNum < totalPages) {
       items.push(
-        <PageButton onClick={() => handlePageChange(totalPages)}><ChevronLast /></PageButton>
+        <PageButton key="last" onClick={() => handlePageChange(totalPages)}><ChevronLast /></PageButton>
       );
     }
 
@@ -90,7 +102,7 @@ export function Pager({
   };
 
   return (
-    <ul className="flex flex-row items-center gap-2">
+    <ul className={cn("flex flex-row items-center gap-2", className)}>
       {renderPageButtons()}
     </ul>
   );
@@ -112,3 +124,33 @@ const PageButton = ({
     />
   </>
 );
+
+
+
+export const DatasetPager = ({
+  dataset,
+  className
+}: {
+  dataset: Dataset<any>;
+  className?: string;
+}) => {
+
+  if (dataset.pager.total === 0 || dataset.isLoading) return null;
+
+  const t = useTranslations('Crud');
+  const { pager } = dataset
+
+  return (
+    <div className={cn("flex flex-col sm:flex-row space-y-4 sm:space-y-0 items-center justify-between p-2", className)}>
+      <span className="text-muted-foreground flex items-center gap-2 text-xs sm:text-base">
+        <Info className="w-4 h-4" />
+        {t('main.nbResults', { count: pager.total })}
+      </span>
+      <Pager
+        currentPage={pager.page}
+        totalPages={pager.pages}
+        onPageChange={dataset.setPage}
+      />
+    </div>
+  )
+}

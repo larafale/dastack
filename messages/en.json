@@ -3,7 +3,7 @@
         "appName": "Dastack",
         "baseline": "Open Source Software",
         "title": "UX Starter Kit",
-        "description": "Ready to vibe NextJS application with premium components. Redefining user experience for the A.I era."
+        "description": "NextJS application with premium components. Redefining user experience for the A.I era."
     },
     "Navigation": {
         "home": "Home",
@@ -48,8 +48,8 @@
                 "loading": "Loading documents...",
                 "search": "Search",
                 "items": "{count, plural, =1 {# document} other {# documents}}",
-                "noResults": "No documents",
-                "noResultsDescription": "No items found. Try adjusting your filters or create a new item."
+                "noResults": "No documents found",
+                "noResultsDescription": "Adjust your filters or create a new document."
             }
         },
         "cal": {
@@ -72,25 +72,33 @@
             "backHref": "/admin",
             "backLabel": "Back to admin",
             "search": "Search",
-            "noResults": "No results"
+            "noResults": "No results",
+            "nbResults": "{count, plural, =1 {# result} other {# results}}"
         },
         "removeConfirm": {
             "title": "Remove",
             "description": "Are you sure you want to remove this item?"
         },
         "actions": {
+            "create": "Create",
             "remove": "Remove",
             "save": "Save",
+            "update": "Update",
             "cancel": "Cancel",
             "confirm": "Confirm"
         },
-        "docs": {
-            "title": "Documents",
-            "description": "Manage your documents"
+        "success": {
+            "create": "Create success",
+            "update": "Update success",
+            "remove": "Remove success"
         },
         "users": {
             "title": "Users",
             "description": "Manage your users"
+        },
+        "docs": {
+            "title": "Documents",
+            "description": "Manage your documents"
         }
     },
     "Ui": {

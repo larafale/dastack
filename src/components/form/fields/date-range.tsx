@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import { Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form'
 
-import { FieldController } from '../types';
+import { FieldController } from '@/types/form'
 
-import { DateRangePicker } from '@/components/ui/date-range-picker';
+import { DateRangePicker } from '@/components/ui/date-range-picker'
 
 export const DateRangeField = ({ field, control }: FieldController) => (
   <Controller
@@ -23,4 +23,4 @@ export const DateRangeField = ({ field, control }: FieldController) => (
       </>
     )}
   />
-);
+)

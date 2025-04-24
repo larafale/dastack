@@ -3,7 +3,7 @@
         "appName": "Dastack",
         "baseline": "Open Source Software",
         "title": "UX Starter Kit",
-        "description": "Ready to vibe NextJS application with premium components. Redefining user experience for the A.I era."
+        "description": "NextJS application with premium components. Redefining user experience for the A.I era."
     },
     "Navigation": {
         "home": "Home",
@@ -49,7 +49,7 @@
                 "search": "Rechercher",
                 "items": "{count, plural, =1 {# document} other {# documents}}",
                 "noResults": "Aucun document",
-                "noResultsDescription": "Ajuster vos filtres ou créez un nouveau document."
+                "noResultsDescription": "Ajustez vos filtres ou créez un nouveau document."
             }
         },
         "cal": {
@@ -72,25 +72,32 @@
             "backHref": "/admin",
             "backLabel": "Retour à l'admin",
             "search": "Rechercher",
-            "noResults": "Aucun résultat"
+            "nbResults": "{count, plural, =1 {# résultat} other {# résultats}}"
         },
         "removeConfirm": {
             "title": "Supprimer",
             "description": "Êtes-vous sûr de vouloir supprimer cet élément ?"
         },
         "actions": {
+            "create": "Créer",
             "remove": "Supprimer",
             "save": "Enregistrer",
+            "update": "Mettre à jour",
             "cancel": "Annuler",
             "confirm": "Confirmer"
         },
-        "docs": {
-            "title": "Documents",
-            "description": "Gérez vos documents"
+        "success": {
+            "create": "Création réussie",
+            "update": "Mise à jour réussie",
+            "remove": "Suppression réussie"
         },
         "users": {
             "title": "Utilisateurs",
             "description": "Gérez vos utilisateurs"
+        },
+        "docs": {
+            "title": "Documents",
+            "description": "Gérez vos documents"
         }
     },
     "Ui": {

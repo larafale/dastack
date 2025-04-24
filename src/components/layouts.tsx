@@ -5,7 +5,6 @@ import { Header } from '@/app/header';
 import { PageContainer } from '@/components/page-components';
 
 
-
 export const RawLayout = ({ children }: PropsWithChildren) => {
   return (<>{children}</>);
 };

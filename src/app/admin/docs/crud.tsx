@@ -1,14 +1,13 @@
 'use client';
 
 import { Doc } from '@/generated/prisma';
-
-import { Cell, Row } from '@/components/table';
-import { RowRender } from '@/components/table/table';
-import { create, find, update } from '@/actions/crud';
-import { deleteDoc } from '@/actions/docs';
-import CrudView from '@/components/crud/view';
+import { find, create, remove, update } from '@/actions/crud';
+import { Crud } from '@/components/crud';
+import { Cell, Row, RowRender } from '@/components/table';
 import { FormSchema } from '@/types/form';
 import { TableSchema } from '@/types/table';
+import useDataset from '@/hooks/use-dataset';
+
 
 export const tableSchema: TableSchema = [
   { key: 'ref', label: 'Ref', width: '10px' },
@@ -17,6 +16,7 @@ export const tableSchema: TableSchema = [
 
 export const formCreateSchema: FormSchema = [
   { name: 'title', type: 'input', label: 'Title', required: true },
+  { name: 'meta', type: 'json', label: 'Meta', defaultValue: {}, disabled: true },
 ];
 
 export const formUpdateSchema: FormSchema = [
@@ -25,33 +25,29 @@ export const formUpdateSchema: FormSchema = [
   ...formCreateSchema,
 ];
 
-export const Crud = function () {
-  const rowRender: RowRender<Doc> = (row, index, table) => (
-    <Row key={index} onClick={() => table.setCurrentRow({ data: row, index })}>
+export default function () {
+
+  const dataset = useDataset<Doc>({
+    fetchFn: (options) => find('doc', { ...options, searchKeys: ['ref', 'title'] }),
+    createFn: (data) => create('doc', data),
+    updateFn: (id, updateData) => update('doc', id, updateData),
+    removeFn: (id) => remove('doc', id),
+  });
+
+  const rowRender: RowRender<Doc> = (row, index) => (
+    <Row key={index} onClick={() => dataset.selectItem(row)}>
       <Cell type='ref' value={row.ref} />
       <Cell>{row.title}</Cell>
     </Row>
   );
 
   return (
-    <CrudView<Doc>
-      model="doc"
+    <Crud
+      dataset={dataset}
       tableSchema={tableSchema}
       formCreateSchema={formCreateSchema}
       formUpdateSchema={formUpdateSchema}
       rowRender={rowRender}
-      createAction={(data) => {
-        return create('doc', data);
-      }}
-      updateAction={(id, updateData) => {
-        return update('doc', id, updateData);
-      }}
-      fetchAction={(options) => {
-        return find('doc', options);
-      }}
-      removeAction={(id) => {
-        return deleteDoc(id);
-      }}
     />
   );
 };

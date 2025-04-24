@@ -4,6 +4,8 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import Section from "@/components/section"
 import { cn } from "@/lib/utils"
+import { useQueryState, parseAsArrayOf, parseAsString, parseAsBoolean } from "nuqs"
+
 interface MenuProps {
   items: { key: string }[];
   onFilterChange: (selectedItems: string[]) => void;
@@ -13,8 +15,8 @@ interface MenuProps {
 }
 
 const Menu = ({ items = [], onFilterChange, onDebugChange, debug, className }: MenuProps) => {
-  const [selected, setSelected] = React.useState<string[]>([]);
-  const [showAll, setShowAll] = React.useState(true);
+  const [selected, setSelected] = useQueryState('selected', parseAsArrayOf(parseAsString).withDefault([]));
+  const [showAll, setShowAll] = useQueryState('showAll', parseAsBoolean.withDefault(true));
 
   const handleToggle = (key: string) => {
     if (selected.includes(key) && selected.length === 1) {
@@ -40,8 +42,8 @@ const Menu = ({ items = [], onFilterChange, onDebugChange, debug, className }: M
   };
 
   return (
-    <Section className={cn("flex flex-col ", className)}>
-      <div className="flex flex-col gap-2 w-full">
+    <Section className={cn("flex overflow-x-scroll", className)}>
+      <div className="flex gap-2 w-full">
         <Button
           variant={showAll ? "default" : "outline"}
           onClick={handleAllToggle}

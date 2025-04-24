@@ -1,6 +1,6 @@
 {
   "name": "dastack",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
@@ -47,6 +47,7 @@
     "cookies-next": "^5.1.0",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.6.5",
+    "json-edit-react": "^1.26.1",
     "lucide-react": "^0.485.0",
     "next": "^15.3.0",
     "next-intl": "^4.0.2",

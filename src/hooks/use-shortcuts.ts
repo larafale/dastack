@@ -1,4 +1,4 @@
-import { usePersist } from './usePersist';
+import { usePersist } from '@/hooks/use-persist';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 // Default shortcuts
@@ -130,6 +130,5 @@ export function useShortcuts() {
     getShortcut,
     setShortcut,
     resetShortcuts,
-    loading,
   };
 }

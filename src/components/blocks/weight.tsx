@@ -18,7 +18,6 @@ import {
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { useState } from 'react';
 import { formatLocale } from '@/lib/date';
-import { RawDossier } from '@/app/api/stream/dossier/schema';
 import { cn } from '@/lib/utils';
 
 function calIMC(weight: number, height: number) {
@@ -64,7 +63,7 @@ const HeaderBlock = ({
   );
 };
 
-export function SectionWeightBlock({ data }: { data: RawDossier }) {
+export function SectionWeightBlock({ data }: { data: any }) {
   const [unit, setUnit] = useState<'kg' | 'lbs'>('kg');
   const weights = data?.weight || [];
   const height = (data?.patient?.height || 0) / 100;

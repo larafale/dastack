@@ -2,6 +2,7 @@
 
 import React, { useCallback, useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useTranslations } from 'next-intl';
 import {
   Upload,
   AlertCircle,
@@ -12,11 +13,10 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { Button, LoadingButton } from '@/components/ui/button';
-import CameraCapture from './camera-capture';
+import CameraCapture from '@/components/camera-capture';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import { useTranslations } from 'next-intl';
 
 type InputMode = 'drop' | 'camera' | 'url';
 

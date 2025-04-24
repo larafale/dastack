@@ -13,7 +13,6 @@ const schema: Field[] = [
     type: 'select-multi',
     options: OPTIONS,
     defaultValue: 'GUEST',
-
     disabled: true,
   },
   {

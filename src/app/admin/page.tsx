@@ -1,6 +1,6 @@
 import { PageHeader, PageLinks, Section } from '@/components/page-components';
 import { useTranslations } from 'next-intl';
-import { Files, Users } from 'lucide-react';
+import { Files, Users, Play } from 'lucide-react';
 
 
 const Dashboard = () => {
@@ -13,12 +13,6 @@ const Dashboard = () => {
       title: t('users.title'),
       description: t('users.description'),
     },
-    // {
-    //   href: '/admin/docs',
-    //   icon: Files,
-    //   title: t('docs.title'),
-    //   description: t('docs.description'),
-    // },
   ];
 
   return (

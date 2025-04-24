@@ -1,9 +1,9 @@
-'use client';
-import { Controller } from 'react-hook-form';
+'use client'
+import { Controller } from 'react-hook-form'
 
-import { FieldController } from '../types';
+import { FieldController } from '@/types/form'
 
-import { DatePicker } from '@/components/ui/date-picker';
+import { DatePicker } from '@/components/ui/date-picker'
 
 export const DatePickerField = ({ field, control }: FieldController) => (
   <Controller
@@ -28,4 +28,4 @@ export const DatePickerField = ({ field, control }: FieldController) => (
       />
     )}
   />
-);
+)

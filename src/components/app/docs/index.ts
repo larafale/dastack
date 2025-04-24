@@ -1,4 +1,3 @@
-import { DocsApp } from './app';
-import { DocsAppProvider } from './use-app';
+import { DocsApp, useApp } from './app';
 
-export { DocsApp, DocsAppProvider };
+export { DocsApp, useApp };

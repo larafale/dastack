@@ -136,7 +136,6 @@ export default function BasePicker({
           results[namespace] = ns.mapper(result);
         })
       );
-
       setData(results);
     } catch (e) {
       console.error(e);

@@ -1,7 +1,7 @@
 <div align="center">
   <img width="134" height="auto" alt="Image" src="https://serveproxy.com/?url=https://dastack.dev/logo.png" />
   <h3>UX Starter Kit</h3>
-  <p>Ready to vibe NextJS application with premium components. Redefining user experience for the A.I era.</p>
+  <p>NextJS application with premium components. Redefining user experience for the A.I era.</p>
   
   <p>
     <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js" alt="Next.js 15"></a>

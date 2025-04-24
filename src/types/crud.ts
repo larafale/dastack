@@ -18,10 +18,14 @@ export interface SearchOptions<T> extends Options {
 }
 
 export type FindReturn<T> = {
-  rows: T[];
-  currentPage: number;
-  totalPages: number;
-  totalRows: number;
+  data: T[];
+  pager: {
+    page: number;
+    pages: number;
+    total: number;
+    sortField: keyof T;
+    sortOrder: 'asc' | 'desc';
+  };
 };
 export type Find<T> = (
   model: Model,
@@ -33,10 +37,15 @@ export type Get = (
   id: string,
   options?: Options
 ) => Promise<CallShape>;
-export type Create = (model: Model, data: any) => Promise<CallShape>;
+export type Create = (
+  model: Model,
+  data: any,
+  options?: Options
+) => Promise<CallShape>;
 export type Update = (
   model: Model,
   id: string,
-  data: any
+  data: any,
+  options?: Options
 ) => Promise<CallShape>;
 export type Remove = (model: Model, id: string) => Promise<CallShape>;

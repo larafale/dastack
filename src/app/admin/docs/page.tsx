@@ -1,4 +1,4 @@
-import { Crud } from './crud';
+import Crud from './crud';
 import { PageBody, PageHeader } from '@/components/page-components';
 import { useTranslations } from 'next-intl';
 

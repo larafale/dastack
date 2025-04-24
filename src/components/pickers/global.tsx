@@ -8,7 +8,7 @@ import { Button } from '../ui/button';
 import Modal from '../modal';
 import { useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
-import { useShortcuts } from '@/hooks/useShortcuts';
+import { useShortcuts } from '@/hooks/use-shortcuts';
 import { useRouter } from 'next/navigation';
 import { getDocs } from '@/actions/docs';
 import { getUsers } from '@/actions/users';
@@ -61,16 +61,14 @@ const fetchers = {
 };
 
 const mapper = (data: any) => {
-  return data.rows;
+  return data.data;
 };
 
-const fetcher = (search: string, namespace: string) => {
+const fetcher = async (search: string, namespace: string) => {
   //@ts-ignore
-  return fetchers[namespace]({ search, pageSize: 3 });
-};
-
-const onSelect = (item: any, namespace: string) => {
-  console.log('item select', namespace, item);
+  const res = await fetchers[namespace]({ search, pageSize: 3 });
+  console.log('res', res);
+  return res;
 };
 
 const config = {

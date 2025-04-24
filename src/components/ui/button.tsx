@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded text-sm font-medium transition-colors  disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:ring-ring active:ring-2 active:ring-offset-2 cursor-pointer',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded font-medium transition-colors  disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:ring-ring active:ring-2 active:ring-offset-2 cursor-pointer',
   {
     variants: {
       variant: {
@@ -45,6 +45,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
+        type='button'
         ref={ref}
         tabIndex={-1}
         {...props}

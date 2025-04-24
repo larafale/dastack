@@ -23,7 +23,7 @@ const SIZES = [
     'lg',
 ];
 
-const AudioUI = () => {
+const ButtonUI = () => {
     const t = useTranslations('Ui');
 
     return (
@@ -38,30 +38,30 @@ const AudioUI = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {VARIANTS.map((variant) => (
                         <div className="flex flex-col gap-2" key={variant}>
-                            <Card className="p-4 flex flex-col gap-5">
-                                <Label className="text-sm font-medium border-b  border-dashed text-center pb-2">{variant}</Label>
-                                <div className="flex items-center justify-center gap-2">
+                            <div className="flex flex-col gap-5">
+                                <div className="font-bold p-3 capitalize">{variant}</div>
+                                <div className="flex items-center justify-center gap-2 bg-dotted shadow border p-4">
                                     {SIZES.map((size) => (
                                         <Button size={size} variant={variant} key={size} tabIndex={0}>Button</Button>
                                     ))}
                                 </div>
-                            </Card>
+                            </div>
                         </div>
                     ))}
-                    <Card className="p-4 flex flex-col gap-5">
-                        <Label className="text-sm font-medium border-b  border-dashed text-center pb-2">icon</Label>
-                        <div className="flex items-center justify-center gap-2">
+                    <div className="flex flex-col gap-5">
+                        <div className="font-bold p-3 capitalize">icon</div>
+                        <div className="flex items-center justify-center gap-2 bg-dotted shadow border p-4">
                             {SIZES.map((size) => (
                                 <Button tabIndex={0} key={size} size={size} >
                                     <ArrowRight />
                                 </Button>
                             ))}
                         </div>
-                    </Card>
+                    </div>
                 </div>
             </Section>
         </>
     );
 };
 
-export default AudioUI;
+export default ButtonUI;

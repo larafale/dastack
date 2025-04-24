@@ -1,6 +1,6 @@
-import CodeLine from "@/components/code-line";
+import CodeLine from "@/components/ui/code-line";
 import { DocContent } from "../shared";
-import CodeBlock from "@/components/code-block";
+import CodeBlock from "@/components/ui/code-block";
 
 export default function GetStartedPage() {
     return (

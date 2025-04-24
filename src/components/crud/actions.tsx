@@ -17,16 +17,16 @@ import { Button } from '@/components/ui/button';
 import { formatLocale } from '@/lib/date';
 import { ConfirmDialog } from '@/components/confirm-dialog';
 import { useState } from 'react';
-import { TableState } from '../table/table';
+import { Dataset } from '@/hooks/use-dataset';
 import { useTranslations } from 'next-intl';
 
 interface ActionsProps<T extends Record<string, any>> {
-  table: TableState<T>;
+  dataset: Dataset<T>;
   onRemove?: any;
 }
 
 const Actions = <T extends Record<string, any>>({
-  table,
+  dataset,
   onRemove,
 }: ActionsProps<T>) => {
   const [open, setOpen] = useState(false);
@@ -51,7 +51,7 @@ const Actions = <T extends Record<string, any>>({
         <Button
           size={'icon'}
           variant="ghost"
-          onClick={() => table.clearCurrentRow()}
+          onClick={() => dataset.clearItem()}
         >
           <X />
         </Button>
@@ -67,15 +67,15 @@ const Actions = <T extends Record<string, any>>({
             <TooltipContent side="left">
               <div className="flex justify-between">
                 <span className='me-4'>Créé:</span>
-                <span>{formatLocale(table.currentRow?.data?.created_at, 'P - HH:mm')}</span>
+                <span>{formatLocale(dataset.selectedItem?.created_at, 'P - HH:mm')}</span>
               </div>
               <div className="flex justify-between">
                 <span className='me-4'>Modifié:</span>
-                <span>{formatLocale(table.currentRow?.data?.updated_at, 'P - HH:mm')}</span>
+                <span>{formatLocale(dataset.selectedItem?.updated_at, 'P - HH:mm')}</span>
               </div>
               <div className="flex justify-between">
                 <span className='me-4'>Ref:</span>
-                <span>{table.currentRow?.data?.ref}</span>
+                <span>{dataset.selectedItem?.ref}</span>
               </div>
             </TooltipContent>
           </Tooltip>

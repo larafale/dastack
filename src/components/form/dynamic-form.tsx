@@ -1,21 +1,17 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm, UseFormReturn } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
-import { ColorField } from './fields/color';
-import { DateField } from './fields/date';
-import { DatePickerField } from './fields/date-picker';
-import { DateRangeField } from './fields/date-range';
-import { SelectField } from './fields/select';
-import { SelectMultiField } from './fields/select-multi';
-import { InputField } from './fields/text';
-import { TextAreaField } from './fields/text-area';
-import { SwitchField } from './fields/switch';
-import { Field } from './types';
+
+import { Field } from '@/types/form';
+import Fields from './fields';
+
+// Define the available field types that exist in the Fields component
+type AvailableFieldType = keyof typeof Fields;
 
 import { parseErrorClient } from '@/lib/errors';
 import { cn, isEmpty } from '@/lib/utils';
@@ -73,34 +69,22 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
 }) => {
   const form = useForm({
     resolver: zodResolver(getFormSchema(schema)),
-    defaultValues: getInitialData(schema, initialData),
+    defaultValues: getInitialData(schema, initialData || {}),
     mode: 'onBlur',
     reValidateMode: 'onChange',
     shouldFocusError: true,
   });
 
-  const { control, formState, watch } = form;
-  const { isDirty, isValid } = formState;
+
+  const { control, formState, watch, getValues } = form;
+  const { isDirty, isValid, dirtyFields } = formState;
   const [isPending, setPending] = useState(false);
 
-  React.useEffect(() => {
-    // const subscription = watch((value, { name, type }) => {
-    // console.log('watch', `${name}: ${type}`, value);
-    // setValue(name, value);
-    const subscription = watch(() => {
-      onFormReady?.(form);
-    });
-    return () => subscription.unsubscribe();
-  }, [watch]);
 
-  // console.log('Form render - initialData:', initialData);
-  // console.log('Current form values:', form.getValues());
-  // console.log('Form errors:', formState.errors);
-  //
 
   const handleFormSubmit = async (data: any) => {
     const values = dirtyOnly ? dirtyValues(formState.dirtyFields, data) : data;
-    // console.log('handleFormSubmit', data, values);
+    console.log('handleFormSubmit', data, values);
     if (isEmpty(values) || isPending || !onSubmit) return;
 
     setPending(true);
@@ -124,48 +108,20 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
       >
         {schema.map((field, i) => (
           <div key={i} className="flex flex-col space-y-2">
-            <Label
-              className="text-muted-foreground rounded px-2 text-xs font-bold"
-              htmlFor={field.name}
-            >
-              {field.label || field.name}
-            </Label>
-            {field.type === 'id' && (
-              <InputField field={field} control={control} />
-            )}
-            {['input', 'phone'].includes(field.type) && (
-              <InputField field={field} control={control} />
-            )}
-            {field.type === 'textarea' && (
-              <TextAreaField field={field} control={control} />
-            )}
-            {field.type === 'color' && (
-              <ColorField field={field} control={control} />
-            )}
-            {field.type === 'date' && (
-              <DateField field={field} control={control} />
-            )}
-            {field.type === 'date-picker' && (
-              <DatePickerField field={field} control={control} />
-            )}
-            {field.type === 'date-range' && (
-              <DateRangeField field={field} control={control} />
-            )}
-            {field.type === 'select' && (
-              <SelectField field={field} control={control} />
-            )}
-            {field.type === 'select-multi' && (
-              <SelectMultiField field={field} control={control} />
-            )}
-            {field.type === 'switch' && (
-              <SwitchField field={field} control={control} />
-            )}
+            {field.type !== 'separator' && (<div className='flex items-center justify-between'>
+              <Label
+                className="text-muted-foreground rounded px-2 text-xs font-bold"
+                htmlFor={field.name}
+              >
+                {field.label || field.name}
+              </Label>
+              {field.actions && field.actions(getValues())}
+            </div>)}
 
-            {field.type === 'separator' && (
-              <div className="mx-auto p-4">
-                <hr className="border-t border-dashed" />
-              </div>
-            )}
+            {(field.type as AvailableFieldType) in Fields &&
+              React.createElement(Fields[field.type as AvailableFieldType], { field, control, formState })
+            }
+
             {formState.errors[field.name] && (
               <p className="text-destructive ml-1 flex items-center gap-2">
                 {/* <CircleX className="size-4" /> */}
@@ -177,11 +133,11 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
           </div>
         ))}
         {!!onSubmit && (
-          <div className="flex justify-end space-x-2  pt-4 ">
-            {/* <Button variant="secondary" type="submit">
-            {m.cancel()}
-          </Button> */}
-            <Button disabled={(!isDirty && dirtyOnly) || !isValid || isPending} type="submit">
+          <div className="flex justify-end space-x-2 pt-4">
+            <Button
+              disabled={(!isDirty && dirtyOnly) || !isValid || isPending}
+              tabIndex={0}
+              type="submit">
               {isPending && <Loader2 className="size-4 animate-spin" />}
               {saveLabel}
             </Button>
@@ -196,7 +152,7 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
               <span></span>
               <div className="select-none space-x-1">
                 <span>{isPending && '🔄'}</span>
-                <span>{isDirty && '✍️'}</span>
+                <span>{(isDirty) && '✍️'}</span>
                 <span>{isValid && '✅'}</span>
                 <span className="cursor-pointer" onClick={() => form.reset()}>
                   {true && '⊗'}
@@ -204,9 +160,10 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
               </div>
             </div>
           </div>
-          <pre className="p-2 text-xs">
-            {JSON.stringify(form.getValues(), null, 2)}
-          </pre>
+
+          <div className="p-2 text-xs">
+            <pre>{JSON.stringify(getValues(), null, 2)}</pre>
+          </div>
         </div>
       )}
     </div>

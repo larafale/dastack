@@ -1,11 +1,11 @@
-'use client';
-import { Controller } from 'react-hook-form';
+'use client'
+import { Controller } from 'react-hook-form'
 
-import { FieldController } from '../types';
+import { FieldController } from '@/types/form'
 
-import { Switch } from '@/components/ui/switch';
+import { Switch } from '@/components/ui/switch'
 
-export const SwitchField = ({ field, control, ...props }: FieldController) => (
+export const SwitchField = ({ field, control }: FieldController) => (
   <Controller
     name={field.name}
     control={control}
@@ -13,7 +13,7 @@ export const SwitchField = ({ field, control, ...props }: FieldController) => (
       <div>
         <Switch
           {...formField}
-          {...props}
+          {...field.props}
           onCheckedChange={formField.onChange}
           checked={formField.value}
           disabled={field.disabled}
@@ -22,4 +22,4 @@ export const SwitchField = ({ field, control, ...props }: FieldController) => (
       </div>
     )}
   />
-);
+)

@@ -16,7 +16,7 @@ export const getFormSchema = (schema: FormSchema) => {
             .min(1, { message: required_error });
           acc[field.name] = rule;
         }
-        if (field.type === 'input') {
+        if (['input', 'textarea', 'relation'].includes(field.type)) {
           const rule = field.required
             ? z.string({ required_error }).min(1, { message: required_error })
             : z.string().optional();
@@ -94,6 +94,9 @@ export const getFormSchema = (schema: FormSchema) => {
             ? z.boolean({ required_error })
             : z.boolean().optional();
         }
+        if (field.type === 'json') {
+          acc[field.name] = z.any();
+        }
         return acc;
       },
       {} as Record<string, z.ZodTypeAny>
@@ -106,20 +109,18 @@ export const getInitialData = (
   data: Record<string, any>
 ) => {
   schema.map((field) => {
+    // non data fields
     if (field.type === 'separator') return;
 
-    if (['select', 'input'].includes(field.type))
+    // cast to string to not have uncontrolled component warning
+    if (['select', 'input', 'textarea'].includes(field.type))
       data[field.name] = data[field.name] || field.defaultValue || '';
-    else if (field.type === 'date-picker')
-      data[field.name] = data[field.name] || field.defaultValue || undefined;
-    else if (field.type === 'date-range')
-      data[field.name] = data[field.name] || field.defaultValue || undefined;
+    // field that are arrays
     else if (field.type === 'select-multi')
       data[field.name] = data[field.name] || field.defaultValue || [];
-    else if (field.type === 'switch')
-      data[field.name] = data[field.name] || field.defaultValue || undefined;
-    else data[field.name] = data[field.name] || field.defaultValue || undefined;
+    // other fields
+    else data[field.name] = data[field.name] || field.defaultValue;
+
   });
-  // console.log(scope, 'getInitialData', data);
   return data;
 };

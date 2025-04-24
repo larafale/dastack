@@ -10,53 +10,57 @@ export const find = async <T>(
 ): Promise<FindReturn<T>> => {
   const {
     page = 1,
+    pageSize = 10,
     search = '',
-    searchKeys = ['id', 'ref'] as (keyof T)[],
+    searchKeys = ['id'] as (keyof T)[],
     sortField = 'id' as keyof T,
-    sortOrder = 'asc',
+    sortOrder = 'desc',
     dateFrom,
     dateTo,
     dateKeys = ['created_at'] as (keyof T)[],
-    pageSize = 10,
+    include,
   } = options;
+
 
   const skip = (page - 1) * pageSize;
 
   const searchFilter = search
     ? {
-        OR: searchKeys.map((key) => {
-          // Check if the key contains dots, indicating a JSON path
-          if (String(key).includes('.')) {
-            // Split the path into components
-            const pathParts = String(key).split('.');
-            // For JSON path queries, construct a path query
-            return {
-              [pathParts[0]]: {
-                path: pathParts.slice(1),
-                string_contains: search,
-                mode: 'insensitive',
-              },
-            };
-          }
-          // Normal direct field search
+      OR: searchKeys.map((key) => {
+        // Check if the key contains dots, indicating a JSON path
+        if (String(key).includes('.')) {
+          // Split the path into components
+          const pathParts = String(key).split('.');
+          // For JSON path queries, construct a path query
           return {
-            [key]: { contains: search, mode: 'insensitive' },
+            [pathParts[0]]: {
+              path: pathParts.slice(1),
+              string_contains: search,
+              mode: 'insensitive',
+            },
           };
-        }),
-      }
+        }
+        // Normal direct field search
+        return {
+          [key]: { contains: search, mode: 'insensitive' },
+        };
+      }),
+    }
     : {};
 
   const dateFilter =
     dateFrom && dateTo
       ? {
-          OR: dateKeys.map((key) => ({
-            [key]: {
-              gte: dateFrom,
-              lte: dateTo,
-            },
-          })),
-        }
+        OR: dateKeys.map((key) => ({
+          [key]: {
+            gte: dateFrom,
+            lte: dateTo,
+          },
+        })),
+      }
       : {};
+
+  // console.error('searchFilter', searchFilter.OR[0]);
 
   const filters: any = {
     AND: [searchFilter, dateFilter],
@@ -73,14 +77,22 @@ export const find = async <T>(
     },
     skip,
     take: pageSize,
+    ...(include && { include }),
   };
   const rows = await (getModel(model) as any).findMany(query);
 
+  // console.log('find()', model, rows.length);
+
+
   return {
-    rows,
-    currentPage: page,
-    totalPages: Math.ceil(totalRows / pageSize),
-    totalRows,
+    data: rows,
+    pager: {
+      page,
+      pages: Math.ceil(totalRows / pageSize),
+      total: totalRows,
+      sortField,
+      sortOrder,
+    },
   };
 };
 
@@ -91,12 +103,11 @@ export async function get(
 ): Promise<CallShape> {
   try {
     if (!id) throw new Error('missing id');
-    const query = {
-      ...(options.select && { select: options.select }),
+    const row = await (getModel(model) as any).findUnique({
       where: { id },
+      ...(options.select && { select: options.select }),
       ...(options.include && { include: options.include }),
-    };
-    const row = await (getModel(model) as any).findUnique(query);
+    });
     return row ? ok(row) : nope('record not found');
   } catch (err) {
     return nope(err);
@@ -105,12 +116,14 @@ export async function get(
 
 export async function create(
   model: Parameters<Create>[0],
-  data: Parameters<Create>[1] = {}
+  data: Parameters<Create>[1] = {},
+  options: Parameters<Create>[2] = {}
 ): Promise<CallShape> {
   try {
     // if (!id) throw new Error('missing id');
     const row = await (getModel(model) as any).create({
       data,
+      ...(options.include && { include: options.include }),
     });
 
     return ok(row);
@@ -122,13 +135,15 @@ export async function create(
 export async function update(
   model: Parameters<Update>[0],
   id: Parameters<Update>[1],
-  data: Parameters<Update>[2] = {}
+  data: Parameters<Update>[2] = {},
+  options: Parameters<Update>[3] = {}
 ): Promise<CallShape> {
   try {
     if (!id) throw new Error('missing id');
     const row = await (getModel(model) as any).update({
       where: { id },
       data,
+      ...(options.include && { include: options.include }),
     });
 
     return ok(row);

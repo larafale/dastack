@@ -95,6 +95,7 @@ body {
   --sidebar-ring: oklch(0.708 0 0);
   --shadow-color: hsl(var(--primary) / 0.3);
   --placeholder: hsl(var(--muted-foreground) / 0.5);
+  --muted-hover: oklch(0.95 0 0);
 }
 
 .dark {
@@ -129,6 +130,7 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --muted-hover: oklch(0.3 0 0);
 }
 
 @layer base {
@@ -167,6 +169,10 @@ body {
   }
 }
 
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
+
 .section {
   @apply p-3;
 
@@ -186,6 +192,14 @@ body {
       var(--pattern-fg) 1px,
       transparent 0,
       transparent 50%);
+}
+
+.bg-dotted {
+  @apply bg-gray-950/[2.5%] bg-fixed bg-[size:10px_10px];
+  @apply after:pointer-events-none after:absolute after:inset-0 after:rounded-lg;
+  @apply [--pattern-fg:var(--color-gray-950)]/5 dark:[--pattern-fg:var(--color-white)]/10;
+  background-image: radial-gradient(var(--pattern-fg) 1px, transparent 0);
+
 }
 
 
@@ -238,6 +252,29 @@ body {
 
 .react-select-clean>div:first-of-type {
   padding: 0px;
+}
+
+.jer-editor-container {
+  font-size: inherit !important;
+}
+
+
+/*
+ * Table rows navigation
+ */
+tbody tr {
+  cursor: pointer;
+  transition: background-color 0.2s, outline 0.2s;
+}
+
+tbody tr:hover {
+  background-color: var(--muted-hover);
+}
+
+tbody tr:focus {
+  background-color: var(--muted);
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
 }
 
 

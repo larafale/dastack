@@ -1,9 +1,9 @@
-'use client';
-import { Controller } from 'react-hook-form';
+'use client'
+import { Controller } from 'react-hook-form'
 
-import { FieldController } from '../types';
+import { FieldController } from '@/types/form'
 
-import { SelectMulti } from '@/components/ui/select-multi';
+import { SelectMulti } from '@/components/ui/select-multi'
 
 export const SelectMultiField = ({ field, control }: FieldController) => (
   <Controller
@@ -21,12 +21,12 @@ export const SelectMultiField = ({ field, control }: FieldController) => (
           )}
           onChange={(selectedOptions: any) => {
             // console.log('selected options', selectedOptions);
-            const values = selectedOptions?.map((option: any) => option.value);
-            formField.onChange(values);
+            const values = selectedOptions?.map((option: any) => option.value)
+            formField.onChange(values)
           }}
           isDisabled={field.disabled}
         />
       </>
     )}
   />
-);
+)

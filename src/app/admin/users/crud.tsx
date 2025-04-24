@@ -1,37 +1,29 @@
 'use client';
 
-import { User } from '@/generated/prisma';
 
-import { Cell, Row } from '@/components/table';
-import { RowRender } from '@/components/table/table';
-import { create, remove, update } from '@/actions/crud';
-import { getUsers } from '@/actions/users';
-import CrudView from '@/components/crud/view';
-import { RolesOptionList } from '@/types/user';
+import { User } from '@/generated/prisma';
+import { create, find, remove, update } from '@/actions/crud';
+import { Crud } from '@/components/crud';
+import { Cell, Row, RowRender } from '@/components/table';
 import { FormSchema } from '@/types/form';
 import { TableSchema } from '@/types/table';
+import { RolesOptionList } from '@/types/user';
+import useDataset from '@/hooks/use-dataset';
+import { useEffect } from 'react';
 
-export const tableSchema: TableSchema = [
+
+const tableSchema: TableSchema = [
   { key: 'ref', label: 'Ref', width: '10px' },
   { key: 'name', label: 'Name', sortable: true },
   { key: 'roles', label: 'Roles', sortable: true, width: '100px' },
 ];
 
-export const formCreateSchema: FormSchema = [
+const formCreateSchema: FormSchema = [
   { name: 'name', type: 'input', label: 'Name', required: true },
   { name: 'email', type: 'input', label: 'Email' },
-  // {
-  //   name: 'roles',
-  //   type: 'select-multi',
-  //   label: 'Roles',
-  //   options: RolesOptionList,
-  //   required: true,
-  //   defaultValue: ['USER'],
-  // },
 ];
 
-export const formUpdateSchema: FormSchema = [
-  { name: 'ref', type: 'input', label: 'Ref', disabled: true },
+const formUpdateSchema: FormSchema = [
   { name: 'name', type: 'input', label: 'Name', required: true },
   { name: 'email', type: 'input', label: 'Email' },
   { name: 'phone', type: 'phone', label: 'Phone' },
@@ -46,34 +38,35 @@ export const formUpdateSchema: FormSchema = [
   },
 ];
 
-export const Crud = function () {
-  const rowRender: RowRender<User> = (row, index, table) => (
-    <Row key={index} onClick={() => table.setCurrentRow({ data: row, index })}>
+export default function () {
+
+  const dataset = useDataset<User>({
+    fetchFn: (options) => find('user', { ...options, searchKeys: ['ref', 'name'] }),
+    createFn: (data) => create('user', data),
+    updateFn: (id, updateData) => update('user', id, updateData),
+    removeFn: (id) => remove('user', id),
+  });
+
+  const rowRender: RowRender<User> = (row, index) => (
+    <Row key={index} onClick={() => dataset.selectItem(row)}>
       <Cell type='ref' value={row.ref} />
       <Cell>{row.name}</Cell>
       <Cell>{row.roles.join(', ')}</Cell>
     </Row>
   );
 
-  return (
-    <CrudView<User>
-      model="user"
+  useEffect(() => {
+    dataset.refresh()
+  }, []);
+
+  return (<>
+    <Crud
+      dataset={dataset}
       tableSchema={tableSchema}
       formCreateSchema={formCreateSchema}
       formUpdateSchema={formUpdateSchema}
       rowRender={rowRender}
-      createAction={(data) => {
-        return create('user', data);
-      }}
-      updateAction={(id, updateData) => {
-        return update('user', id, updateData);
-      }}
-      fetchAction={(options) => {
-        return getUsers(options);
-      }}
-      removeAction={(id) => {
-        return remove('user', id);
-      }}
     />
+  </>
   );
 };

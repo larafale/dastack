@@ -1,7 +1,7 @@
-import { cn } from '@/lib/utils';
-import Section from './section';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import Section from '@/components/section';
 import { Button } from '@/components/ui/button';
 
 interface PageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {

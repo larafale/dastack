@@ -1,9 +1,7 @@
-import { isMobile } from 'react-device-detect';
 
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
@@ -22,9 +20,8 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '@/components/ui/drawer';
-import { useEffect } from 'react';
 
-type BoxProps = {
+type ModalProps = {
   open: boolean;
   onClose: () => void;
   title?: string;
@@ -42,7 +39,7 @@ export default function Modal({
   mode = 'dialog',
   className,
   showCloseButton = true,
-}: BoxProps) {
+}: ModalProps) {
   // mode = mode === 'drawer' && !isMobile ? 'sheet' : mode;
 
   return (

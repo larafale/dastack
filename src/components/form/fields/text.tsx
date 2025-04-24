@@ -1,18 +1,18 @@
-'use client';
-import { Controller } from 'react-hook-form';
+'use client'
+import { Controller } from 'react-hook-form'
 
-import { FieldController } from '../types';
+import { FieldController } from '@/types/form'
 
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/input'
 
-export const InputField = ({ field, control, ...props }: FieldController) => (
+export const InputField = ({ field, control }: FieldController) => (
   <Controller
     name={field.name}
     control={control}
     render={({ field: formField }) => (
       <Input
         {...formField}
-        {...props}
+        {...field.props}
         //@ts-ignore
         uiSize={field.size}
         disabled={field.disabled}
@@ -22,4 +22,4 @@ export const InputField = ({ field, control, ...props }: FieldController) => (
       />
     )}
   />
-);
+)
