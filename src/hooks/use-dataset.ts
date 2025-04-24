@@ -79,7 +79,6 @@ function useDataset<T = any>(options: UseDatasetOptions<T>): Dataset<T> {
         defaultItems = [],
         defaultItem = null,
         defaultFilters = {},
-        skipInitialFetch = false
     } = options;
 
     const [items, setItems] = useState<T[]>(defaultItems);
@@ -110,7 +109,7 @@ function useDataset<T = any>(options: UseDatasetOptions<T>): Dataset<T> {
     const [dateTo, setDateTo] = useState<string | null>(defaultFilters.dateTo || null);
 
     const refresh = useCallback(async (fetchOptions?: any) => {
-        console.log('refresh', key, { page, search });
+        // console.log('refresh', key, { page, search });
         setIsLoading(true);
         setError(null);
         firstRefreshRef.current = true;
