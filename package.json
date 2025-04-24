@@ -7,8 +7,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:reset": "pnpm dlx prisma migrate reset",
-    "db:seed": "pnpm dlx prisma db seed",
-    "postinstall": "prisma generate"
+    "db:seed": "pnpm dlx prisma db seed"
   },
   "prisma": {
     "seed": "pnpm exec tsx prisma/seed.ts"
